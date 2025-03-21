@@ -1,5 +1,5 @@
 "use client";
-import { addMinutes, format, parse } from "date-fns";
+import { format, parse } from "date-fns";
 import { ja } from "date-fns/locale";
 import { useEffect, useState } from "react";
 
@@ -40,6 +40,9 @@ const ReservationApp = () => {
     notes: "",
   });
   const [darkMode, setDarkMode] = useState<boolean | null>(null);
+  // 環境変数から利用可能な日付と時間を取得
+  const [availableDates, setAvailableDates] = useState<string[]>([]);
+  const [availableTimes, setAvailableTimes] = useState<string[]>([]);
 
   // 営業時間の設定
   const businessHours = {
@@ -55,36 +58,61 @@ const ReservationApp = () => {
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDarkMode(prefersDarkMode);
     
-    // 今日の日付を「2023-12-25」みたいな形で準備するよ
-    // これで予約カレンダーが今日の日付から始まるんだ！
-    setSelectedDate(format(new Date(), "yyyy-MM-dd"));
+    // 環境変数から利用可能な日付と時間を取得
+    try {
+      const datesString = process.env.NEXT_PUBLIC_AVAILABLE_DATES || '[]';
+      const timesString = process.env.NEXT_PUBLIC_AVAILABLE_TIMES || '[]';
+      
+      const dates = JSON.parse(datesString);
+      const times = JSON.parse(timesString);
+      
+      setAvailableDates(dates);
+      setAvailableTimes(times);
+      
+      // 利用可能な日付があれば、最初の日付を選択
+      if (dates.length > 0) {
+        setSelectedDate(dates[0]);
+      } else {
+        // 利用可能な日付がない場合は今日の日付を設定
+        setSelectedDate(format(new Date(), "yyyy-MM-dd"));
+      }
+    } catch (error) {
+      console.error("環境変数の解析エラー:", error);
+      // エラーが発生した場合は今日の日付を設定
+      setSelectedDate(format(new Date(), "yyyy-MM-dd"));
+    }
   }, []);
 
   // 時間枠を生成する関数
   const generateTimeSlots = (date: string) => {
     const slots: TimeSlot[] = [];
-    const startTime = parse(businessHours.start, "HH:mm", new Date());
-    const endTime = parse(businessHours.end, "HH:mm", new Date());
     
-    let currentTime = startTime;
+    // 利用可能な時間がない場合は空の配列を返す
+    if (availableTimes.length === 0) {
+      return slots;
+    }
     
-    while (currentTime < endTime) {
-      const start = format(currentTime, "HH:mm");
-      const end = format(addMinutes(currentTime, businessHours.slotDuration), "HH:mm");
+    // 選択された日付が利用可能な日付にない場合は空の配列を返す
+    if (availableDates.length > 0 && !availableDates.includes(date)) {
+      return slots;
+    }
+    
+    // 環境変数で指定された時間枠を使用
+    for (let i = 0; i < availableTimes.length - 1; i++) {
+      const startTime = availableTimes[i];
+      const endTime = availableTimes[i + 1];
       
       // この時間枠に予約があるか確認
       const existingReservation = reservations.find(
-        (r) => r.date === date && r.startTime === start
+        (r) => r.date === date && r.startTime === startTime
       );
       
       slots.push({
-        startTime: start,
-        endTime: end,
+        startTime: startTime,
+        endTime: endTime,
         isAvailable: !existingReservation,
         reservation: existingReservation,
       });
-      
-      currentTime = addMinutes(currentTime, businessHours.slotDuration);
     }
     
     return slots;
@@ -93,7 +121,7 @@ const ReservationApp = () => {
   // 日付変更時に時間枠を更新
   useEffect(() => {
     setTimeSlots(generateTimeSlots(selectedDate));
-  }, [selectedDate, reservations]);
+  }, [selectedDate, reservations, availableTimes, availableDates]);
 
   // ローカルストレージから予約データを読み込む
   useEffect(() => {
@@ -197,6 +225,11 @@ const ReservationApp = () => {
     return format(date, "yyyy年MM月dd日 (eee)", { locale: ja });
   };
 
+  // 利用可能な日付かどうかを確認する関数
+  const isDateAvailable = (dateString: string) => {
+    return availableDates.length === 0 || availableDates.includes(dateString);
+  };
+
   return (
     <div className={`min-h-screen ${darkMode === null ? "" : (darkMode ? "dark bg-gray-900 text-white" : "bg-gray-50 text-gray-900")}`}>
       {/* darkModeがnullの場合（初期レンダリング時）は何も表示しない */}
@@ -220,16 +253,39 @@ const ReservationApp = () => {
             <h2 className="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">
               日付を選択:
             </h2>
-            <div className="flex items-center">
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-              />
-              <span className="ml-4 text-gray-600 dark:text-gray-400">
-                {formatDate(selectedDate)}
-              </span>
+            <div className="flex flex-col items-start">
+              {availableDates.length > 0 ? (
+                <div className="space-y-2 w-full">
+                  <select
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                  >
+                    {availableDates.map((date) => (
+                      <option key={date} value={date}>
+                        {formatDate(date)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <input
+                    type="date"
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                  />
+                  <span className="ml-4 text-gray-600 dark:text-gray-400">
+                    {formatDate(selectedDate)}
+                  </span>
+                </div>
+              )}
+              {availableDates.length > 0 && !isDateAvailable(selectedDate) && (
+                <p className="text-red-500 mt-2">
+                  この日付は予約できません。利用可能な日付を選択してください。
+                </p>
+              )}
             </div>
           </div>
 
@@ -238,24 +294,32 @@ const ReservationApp = () => {
             <h2 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
               予約状況:
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-              {timeSlots.map((slot, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleTimeSlotClick(slot)}
-                  className={`p-3 rounded-md text-center cursor-pointer transition-colors ${
-                    slot.isAvailable
-                      ? "bg-green-100 hover:bg-green-200 text-green-800 dark:bg-green-900 dark:hover:bg-green-800 dark:text-green-200"
-                      : "bg-red-100 hover:bg-red-200 text-red-800 dark:bg-red-900 dark:hover:bg-red-800 dark:text-red-200"
-                  }`}
-                >
-                  <div className="font-medium">{slot.startTime} - {slot.endTime}</div>
-                  <div className="text-xs mt-1">
-                    {slot.isAvailable ? "予約可能" : slot.reservation?.name}
+            {timeSlots.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                {timeSlots.map((slot, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleTimeSlotClick(slot)}
+                    className={`p-3 rounded-md text-center cursor-pointer transition-colors ${
+                      slot.isAvailable
+                        ? "bg-green-100 hover:bg-green-200 text-green-800 dark:bg-green-900 dark:hover:bg-green-800 dark:text-green-200"
+                        : "bg-red-100 hover:bg-red-200 text-red-800 dark:bg-red-900 dark:hover:bg-red-800 dark:text-red-200"
+                    }`}
+                  >
+                    <div className="font-medium">{slot.startTime} - {slot.endTime}</div>
+                    <div className="text-xs mt-1">
+                      {slot.isAvailable ? "予約可能" : slot.reservation?.name}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-500 dark:text-gray-400">
+                {availableDates.length > 0 && !isDateAvailable(selectedDate)
+                  ? "この日付は予約できません。"
+                  : "この日に利用可能な時間枠はありません。"}
+              </p>
+            )}
           </div>
 
           {/* 予約フォーム */}
