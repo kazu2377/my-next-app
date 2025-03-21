@@ -38,15 +38,6 @@ async function getReservations() {
   return data as ReservationType[];
 }
 
-// 予約済みの日付と時間のリストを取得する関数
-async function getReservedDateTimes() {
-  const reservations = await getReservations();
-  return reservations.map(reservation => ({
-    date: reservation.date,
-    time: reservation.time
-  }));
-}
-
 // 予約を追加するサーバーアクション
 async function addReservation(formData: FormData) {
   'use server';
@@ -59,18 +50,6 @@ async function addReservation(formData: FormData) {
   const date = formData.get('date') as string;
   
   if (!name || !phone || !email || !time || !date) {
-    return;
-  }
-  
-  // 予約済みの日時かどうかをチェックする
-  const reservedDateTimes = await getReservedDateTimes();
-  const isAlreadyReserved = reservedDateTimes.some(
-    reservedDateTime => reservedDateTime.date === date && reservedDateTime.time === time
-  );
-  
-  if (isAlreadyReserved) {
-    // すでに予約済みの場合は処理を中断
-    console.error('選択された日時はすでに予約されています');
     return;
   }
   
@@ -139,47 +118,6 @@ async function ReservationsList() {
   );
 }
 
-// 予約済み日時一覧表示コンポーネント
-async function ReservedDatesList() {
-  const reservedDateTimes = await getReservedDateTimes();
-  
-  // 日付ごとに予約時間をグループ化
-  const groupedByDate = reservedDateTimes.reduce<Record<string, string[]>>((acc, { date, time }) => {
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    // 重複チェックを追加
-    if (!acc[date].includes(time)) {
-      acc[date].push(time);
-    }
-    return acc;
-  }, {});
-  
-  return (
-    <div className="mt-8 mb-8">
-      <h2 className="text-xl font-semibold mb-4">予約済み日時</h2>
-      {Object.keys(groupedByDate).length === 0 ? (
-        <p>予約済みの日時はありません</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {Object.entries(groupedByDate).map(([date, times]) => (
-            <div key={date} className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-              <h3 className="font-medium">{date}</h3>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {times.map((time, index) => (
-                  <span key={`${date}-${time}-${index}`} className="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 text-xs rounded-full">
-                    {time} 予約×
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 // メインのページコンポーネント
 export default function ReservationPage() {
   const timeSlots = generateTimeSlots();
@@ -189,10 +127,6 @@ export default function ReservationPage() {
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
         予約管理システム
       </h1>
-      
-      <Suspense fallback={<div>読み込み中...</div>}>
-        <ReservedDatesList />
-      </Suspense>
       
       <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold mb-4">新規予約</h2>
