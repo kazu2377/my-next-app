@@ -44,7 +44,7 @@ const ReservationApp = () => {
   const [availableDates, setAvailableDates] = useState<string[]>([]);
   const [availableTimes, setAvailableTimes] = useState<string[]>([]);
 
-  // 営業時間の設定
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const businessHours = {
     start: "09:00",
     end: "18:00",
