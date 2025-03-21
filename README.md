@@ -1,4 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 予約管理システム
+
+このプロジェクトはNext.jsで作成された予約管理システムです。
+
+## Supabaseのセットアップ
+
+1. [Supabase](https://supabase.com/)でアカウントを作成し、新しいプロジェクトを作成します。
+
+2. プロジェクト作成後、SQL Editorで以下のSQLを実行して必要なテーブルを作成します:
+
+```sql
+CREATE TABLE reservations (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT NOT NULL,
+  notes TEXT,
+  time TEXT NOT NULL,
+  date TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- インデックスの作成
+CREATE INDEX idx_reservations_date ON reservations(date);
+```
+
+3. プロジェクトの設定ページから、`Project URL`と`anon public key`を取得します。
+
+4. プロジェクトのルートディレクトリに`.env.local`ファイルを作成し、以下の内容を追加します:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=あなたのプロジェクトURL
+NEXT_PUBLIC_SUPABASE_ANON_KEY=あなたの匿名キー
+```
+
+## 開発環境の起動
+
+```bash
+npm run dev
+```
+
+## ビルドと本番環境での実行
+
+```bash
+npm run build
+npm start
+```
+
+## 機能
+
+- 9時〜18時（12時〜13時を除く）の15分毎の予約
+- 名前、電話番号、メールアドレス、備考欄の入力
+- Supabaseを使用したデータ保存
 
 ## Getting Started
 

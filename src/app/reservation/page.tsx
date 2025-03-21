@@ -48,13 +48,15 @@ const ReservationApp = () => {
     slotDuration: 30, // 分単位
   };
 
-  // クライアントサイドでのみ実行される初期化ロジック
+  // ページが最初に表示されたときに一度だけ実行される特別なお手伝いさん
   useEffect(() => {
-    // ブラウザのprefers-color-schemeを確認してダークモードを初期化
+    // あなたのパソコンが「暗い画面」が好きかどうかを確認するよ
+    // 暗い画面が好きならtrue（はい）、明るい画面が好きならfalse（いいえ）になるよ
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDarkMode(prefersDarkMode);
     
-    // 日付の初期化
+    // 今日の日付を「2023-12-25」みたいな形で準備するよ
+    // これで予約カレンダーが今日の日付から始まるんだ！
     setSelectedDate(format(new Date(), "yyyy-MM-dd"));
   }, []);
 
