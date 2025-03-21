@@ -25,9 +25,7 @@ interface TimeSlot {
 
 const ReservationApp = () => {
   // 状態管理
-  const [selectedDate, setSelectedDate] = useState<string>(
-    format(new Date(), "yyyy-MM-dd")
-  );
+  const [selectedDate, setSelectedDate] = useState<string>("");
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [showForm, setShowForm] = useState<boolean>(false);
@@ -41,7 +39,7 @@ const ReservationApp = () => {
     endTime: "",
     notes: "",
   });
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean | null>(null);
 
   // 営業時間の設定
   const businessHours = {
@@ -49,6 +47,16 @@ const ReservationApp = () => {
     end: "18:00",
     slotDuration: 30, // 分単位
   };
+
+  // クライアントサイドでのみ実行される初期化ロジック
+  useEffect(() => {
+    // ブラウザのprefers-color-schemeを確認してダークモードを初期化
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(prefersDarkMode);
+    
+    // 日付の初期化
+    setSelectedDate(format(new Date(), "yyyy-MM-dd"));
+  }, []);
 
   // 時間枠を生成する関数
   const generateTimeSlots = (date: string) => {
@@ -180,215 +188,219 @@ const ReservationApp = () => {
     setDarkMode(!darkMode);
   };
 
-  // 日付をフォーマットする関数
+  // formatDate関数を修正して、クライアントサイドでのみ実行されるようにする
   const formatDate = (dateString: string) => {
+    if (!dateString) return "";
     const date = parse(dateString, "yyyy-MM-dd", new Date());
     return format(date, "yyyy年MM月dd日 (eee)", { locale: ja });
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? "dark bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}>
-      <div className="container mx-auto p-4 max-w-4xl">
-        {/* ヘッダー */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-            予約管理システム
-          </h1>
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
-          >
-            {darkMode ? "🌞" : "🌙"}
-          </button>
-        </div>
-
-        {/* 日付選択 */}
-        <div className="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <h2 className="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">
-            日付を選択:
-          </h2>
-          <div className="flex items-center">
-            <input
-              type="date"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-            />
-            <span className="ml-4 text-gray-600 dark:text-gray-400">
-              {formatDate(selectedDate)}
-            </span>
+    <div className={`min-h-screen ${darkMode === null ? "" : (darkMode ? "dark bg-gray-900 text-white" : "bg-gray-50 text-gray-900")}`}>
+      {/* darkModeがnullの場合（初期レンダリング時）は何も表示しない */}
+      {darkMode !== null && (
+        <div className="container mx-auto p-4 max-w-4xl">
+          {/* ヘッダー */}
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              予約管理システム
+            </h1>
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
+            >
+              {darkMode ? "🌞" : "🌙"}
+            </button>
           </div>
-        </div>
 
-        {/* 時間枠一覧 */}
-        <div className="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <h2 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
-            予約状況:
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-            {timeSlots.map((slot, index) => (
-              <div
-                key={index}
-                onClick={() => handleTimeSlotClick(slot)}
-                className={`p-3 rounded-md text-center cursor-pointer transition-colors ${
-                  slot.isAvailable
-                    ? "bg-green-100 hover:bg-green-200 text-green-800 dark:bg-green-900 dark:hover:bg-green-800 dark:text-green-200"
-                    : "bg-red-100 hover:bg-red-200 text-red-800 dark:bg-red-900 dark:hover:bg-red-800 dark:text-red-200"
-                }`}
-              >
-                <div className="font-medium">{slot.startTime} - {slot.endTime}</div>
-                <div className="text-xs mt-1">
-                  {slot.isAvailable ? "予約可能" : slot.reservation?.name}
-                </div>
-              </div>
-            ))}
+          {/* 日付選択 */}
+          <div className="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+            <h2 className="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">
+              日付を選択:
+            </h2>
+            <div className="flex items-center">
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="border border-gray-300 dark:border-gray-600 rounded-md p-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              />
+              <span className="ml-4 text-gray-600 dark:text-gray-400">
+                {formatDate(selectedDate)}
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* 予約フォーム */}
-        {showForm && (
+          {/* 時間枠一覧 */}
           <div className="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
             <h2 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
-              新規予約: {selectedTimeSlot?.startTime} - {selectedTimeSlot?.endTime}
+              予約状況:
             </h2>
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    お名前 *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    メールアドレス *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    電話番号 *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    備考
-                  </label>
-                  <textarea
-                    name="notes"
-                    value={formData.notes}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 h-24"
-                  ></textarea>
-                </div>
-              </div>
-              <div className="flex justify-end space-x-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowForm(false);
-                    setSelectedTimeSlot(null);
-                  }}
-                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+              {timeSlots.map((slot, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleTimeSlotClick(slot)}
+                  className={`p-3 rounded-md text-center cursor-pointer transition-colors ${
+                    slot.isAvailable
+                      ? "bg-green-100 hover:bg-green-200 text-green-800 dark:bg-green-900 dark:hover:bg-green-800 dark:text-green-200"
+                      : "bg-red-100 hover:bg-red-200 text-red-800 dark:bg-red-900 dark:hover:bg-red-800 dark:text-red-200"
+                  }`}
                 >
-                  キャンセル
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                >
-                  予約する
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-
-        {/* 本日の予約一覧 */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-          <h2 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
-            {formatDate(selectedDate)}の予約一覧:
-          </h2>
-          {reservations.filter((r) => r.date === selectedDate).length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead className="bg-gray-50 dark:bg-gray-900">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                      時間
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                      名前
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                      連絡先
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                      操作
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                  {reservations
-                    .filter((r) => r.date === selectedDate)
-                    .sort((a, b) => a.startTime.localeCompare(b.startTime))
-                    .map((reservation) => (
-                      <tr key={reservation.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
-                          {reservation.startTime} - {reservation.endTime}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
-                          {reservation.name}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
-                          <div>{reservation.email}</div>
-                          <div>{reservation.phone}</div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">
-                          <button
-                            onClick={() => handleCancelReservation(reservation.id)}
-                            className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
-                          >
-                            キャンセル
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
+                  <div className="font-medium">{slot.startTime} - {slot.endTime}</div>
+                  <div className="text-xs mt-1">
+                    {slot.isAvailable ? "予約可能" : slot.reservation?.name}
+                  </div>
+                </div>
+              ))}
             </div>
-          ) : (
-            <p className="text-gray-500 dark:text-gray-400">予約はありません</p>
-          )}
-        </div>
+          </div>
 
-        {/* フッター */}
-        <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-          <p>© 2025 予約管理システム - 簡単に予約を管理</p>
+          {/* 予約フォーム */}
+          {showForm && (
+            <div className="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+              <h2 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
+                新規予約: {selectedTimeSlot?.startTime} - {selectedTimeSlot?.endTime}
+              </h2>
+              <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      お名前 *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      メールアドレス *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      電話番号 *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      備考
+                    </label>
+                    <textarea
+                      name="notes"
+                      value={formData.notes}
+                      onChange={handleInputChange}
+                      className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 h-24"
+                    ></textarea>
+                  </div>
+                </div>
+                <div className="flex justify-end space-x-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowForm(false);
+                      setSelectedTimeSlot(null);
+                    }}
+                    className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                  >
+                    キャンセル
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  >
+                    予約する
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {/* 本日の予約一覧 */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+            <h2 className="text-lg font-medium mb-4 text-gray-700 dark:text-gray-300">
+              {formatDate(selectedDate)}の予約一覧:
+            </h2>
+            {reservations.filter((r) => r.date === selectedDate).length > 0 ? (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                  <thead className="bg-gray-50 dark:bg-gray-900">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        時間
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        名前
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        連絡先
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                        操作
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                    {reservations
+                      .filter((r) => r.date === selectedDate)
+                      .sort((a, b) => a.startTime.localeCompare(b.startTime))
+                      .map((reservation) => (
+                        <tr key={reservation.id}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                            {reservation.startTime} - {reservation.endTime}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                            {reservation.name}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                            <div>{reservation.email}</div>
+                            <div>{reservation.phone}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm">
+                            <button
+                              onClick={() => handleCancelReservation(reservation.id)}
+                              className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                            >
+                              キャンセル
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="text-gray-500 dark:text-gray-400">予約はありません</p>
+            )}
+          </div>
+
+          {/* フッター */}
+          <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
+            <p>© 2025 予約管理システム - 簡単に予約を管理</p>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
