@@ -253,13 +253,15 @@ function AvailableDatesList() {
 }
 
 // 予約フォームコンポーネント
-export async function ReservationForm({ searchParams }: { searchParams?: { selectedDate?: string, error?: string, success?: string } }) {
+async function ReservationForm({ searchParams }: { searchParams?: { selectedDate?: string, error?: string, success?: string } }) {
+  // searchParamsの各プロパティを安全に取得
+  const selectedDate = searchParams ? await Promise.resolve(searchParams.selectedDate || '') : '';
+  const success = searchParams ? await Promise.resolve(searchParams.success) : undefined;
+  const error = searchParams ? await Promise.resolve(searchParams.error) : undefined;
+  
   const timeSlots = generateTimeSlots();
   const { availableDates } = getAvailableDatesAndTimes();
   const reservedDateTimes = await getReservedDateTimes();
-  
-  // URLから選択された日付を取得
-  const selectedDate = searchParams?.selectedDate || '';
   
   // 日付と時間の組み合わせが既に予約済みかチェックする関数
   const isDateTimeReserved = (date: string, time: string) => {
@@ -280,15 +282,15 @@ export async function ReservationForm({ searchParams }: { searchParams?: { selec
     <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">新規予約</h2>
       
-      {searchParams?.success && (
+      {success && (
         <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
           予約が正常に完了しました。
         </div>
       )}
       
-      {searchParams?.error && (
+      {error && (
         <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-          {searchParams.error}
+          {error}
         </div>
       )}
       
@@ -460,8 +462,11 @@ export async function ReservationForm({ searchParams }: { searchParams?: { selec
 export default async function ReservationPage({
   searchParams
 }: {
-  searchParams?: { selectedDate?: string, error?: string, success?: string }
+  searchParams?: Promise<{ selectedDate?: string, error?: string, success?: string }> 
 }) {
+  // searchParamsをawaitして解決
+  const resolvedParams = searchParams ? await searchParams : {};
+  
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
@@ -475,7 +480,7 @@ export default async function ReservationPage({
       </Suspense>
       
       <Suspense fallback={<div>フォームを読み込み中...</div>}>
-        <ReservationForm searchParams={searchParams} />
+        <ReservationForm searchParams={resolvedParams} />
       </Suspense>
       
       <Suspense fallback={<div>読み込み中...</div>}>
