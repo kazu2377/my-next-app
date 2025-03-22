@@ -115,8 +115,8 @@ async function addReservation(formData: FormData) {
   );
   
   if (isAlreadyReserved) {
-    // すでに予約済みの場合は処理を中断
-    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('選択された日時はすでに予約されています')}`);
+    // すでに予約済みの場合は処理を中断し、エラーメッセージを表示
+    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('すでに予約されています。再度別な日時を選択してください。')}`);
     return;
   }
   
@@ -143,8 +143,8 @@ async function addReservation(formData: FormData) {
   // ページを再検証して最新データを表示
   revalidatePath('/reservation_s');
   
-  // 予約成功時にリダイレクト
-  redirect('/reservation_s?success=true');
+  // 予約成功時に完了画面にリダイレクト
+  redirect('/reservation_s/complete?name=' + encodeURIComponent(name) + '&date=' + encodeURIComponent(date) + '&time=' + encodeURIComponent(time));
 }
 
 // 予約リスト表示コンポーネント
@@ -404,7 +404,7 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
               disabled={!selectedDate}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <option value="">時間を選択してください</option>
+              <option value="">◯時間を選択してください</option>
               {selectedDate ? (
                 // 選択された日付に対して予約可能な時間のみを表示
                 availableTimesForSelectedDate.map((time: string) => (

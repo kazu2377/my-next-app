@@ -1,0 +1,37 @@
+warning: LF will be replaced by CRLF in .specstory/.what-is-this.md.
+The file will have its original line endings in your working directory
+[1mdiff --git a/src/app/reservation_s/page.tsx b/src/app/reservation_s/page.tsx[m
+[1mindex 500dfec..416f053 100644[m
+[1m--- a/src/app/reservation_s/page.tsx[m
+[1m+++ b/src/app/reservation_s/page.tsx[m
+[36m@@ -115,8 +115,8 @@[m [masync function addReservation(formData: FormData) {[m
+   );[m
+   [m
+   if (isAlreadyReserved) {[m
+[31m-    // すでに予約済みの場合は処理を中断[m
+[31m-    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('選択された日時はすでに予約されています')}`);[m
+[32m+[m[32m    // すでに予約済みの場合は処理を中断し、エラーメッセージを表示[m
+[32m+[m[32m    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('すでに予約されています。再度別な日時を選択してください。')}`);[m
+     return;[m
+   }[m
+   [m
+[36m@@ -143,8 +143,8 @@[m [masync function addReservation(formData: FormData) {[m
+   // ページを再検証して最新データを表示[m
+   revalidatePath('/reservation_s');[m
+   [m
+[31m-  // 予約成功時にリダイレクト[m
+[31m-  redirect('/reservation_s?success=true');[m
+[32m+[m[32m  // 予約成功時に完了画面にリダイレクト[m
+[32m+[m[32m  redirect('/reservation_s/complete?name=' + encodeURIComponent(name) + '&date=' + encodeURIComponent(date) + '&time=' + encodeURIComponent(time));[m
+ }[m
+ [m
+ // 予約リスト表示コンポーネント[m
+[36m@@ -404,7 +404,7 @@[m [masync function ReservationForm({ searchParams }: { searchParams?: { selectedDate[m
+               disabled={!selectedDate}[m
+               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"[m
+             >[m
+[31m-              <option value="">時間を選択してください</option>[m
+[32m+[m[32m              <option value="">◯時間を選択してください</option>[m
+               {selectedDate ? ([m
+                 // 選択された日付に対して予約可能な時間のみを表示[m
+                 availableTimesForSelectedDate.map((time: string) => ([m
