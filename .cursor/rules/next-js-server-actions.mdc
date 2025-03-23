@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: Specific guidelines for Next.js server actions, including error modeling, validation, and usage of next-safe-action.
 globs: app/**/*.{ts,js,jsx,tsx}
 ---

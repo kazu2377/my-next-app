@@ -1,7 +1,9 @@
 ---
-description: Prioritizes error handling and edge cases in all code. Defines how to manage errors, handle preconditions, and implement logging.
+description: 
 globs: **/*.{ts,js,jsx,tsx}
+alwaysApply: false
 ---
+
 - Prioritize error handling and edge cases:
   - Handle errors and edge cases at the beginning of functions.
   - Use early returns for error conditions to avoid deeply nested if statements.

@@ -115,8 +115,8 @@ async function addReservation(formData: FormData) {
   );
   
   if (isAlreadyReserved) {
-    // すでに予約済みの場合は処理を中断
-    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('選択された日時はすでに予約されています')}`);
+    // すでに予約済みの場合は処理を中断し、エラーメッセージを表示
+    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('すでに予約されています。再度別な日時を選択してください。')}`);
     return;
   }
   
@@ -143,8 +143,8 @@ async function addReservation(formData: FormData) {
   // ページを再検証して最新データを表示
   revalidatePath('/reservation_s');
   
-  // 予約成功時にリダイレクト
-  redirect('/reservation_s?success=true');
+  // 予約成功時に完了画面にリダイレクト
+  redirect('/reservation_s/complete?name=' + encodeURIComponent(name) + '&date=' + encodeURIComponent(date) + '&time=' + encodeURIComponent(time));
 }
 
 // 予約リスト表示コンポーネント
@@ -294,6 +294,26 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
         </div>
       )}
       
+      {/* 予約ステップの案内 */}
+      <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg border border-blue-200 dark:border-blue-800">
+        <h3 className="text-md font-medium text-blue-800 dark:text-blue-200 mb-2">
+          予約の手順
+        </h3>
+        <ol className="list-decimal pl-5 text-sm text-blue-700 dark:text-blue-300">
+          <li className="mb-1"><strong>ステップ1:</strong> 予約したい日付を選択して「日付を確定」ボタンをクリックしてください</li>
+          <li className="mb-1"><strong>ステップ2:</strong> お客様情報を入力してください</li>
+          <li className="mb-1"><strong>ステップ3:</strong> 予約時間を選択して「予約する」ボタンをクリックしてください</li>
+        </ol>
+        {!selectedDate && (
+          <div className="mt-3 text-sm font-medium text-red-600 dark:text-red-400 flex items-center">
+            <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            最初に日付を選択してください！
+          </div>
+        )}
+      </div>
+      
       {/* 日付選択フォーム */}
       <form action={selectDate} className="mb-4">
         <div className="mb-4">
@@ -341,7 +361,8 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
             id="name"
             name="name"
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            disabled={!selectedDate}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
           />
         </div>
         
@@ -354,7 +375,8 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
             id="phone"
             name="phone"
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            disabled={!selectedDate}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
           />
         </div>
         
@@ -367,7 +389,8 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
             id="email"
             name="email"
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            disabled={!selectedDate}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
           />
         </div>
         
@@ -404,7 +427,7 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
               disabled={!selectedDate}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <option value="">時間を選択してください</option>
+              <option value="">◯時間を選択してください</option>
               {selectedDate ? (
                 // 選択された日付に対して予約可能な時間のみを表示
                 availableTimesForSelectedDate.map((time: string) => (
@@ -440,7 +463,8 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
             id="notes"
             name="notes"
             rows={3}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            disabled={!selectedDate}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
           ></textarea>
         </div>
         
