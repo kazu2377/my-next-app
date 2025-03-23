@@ -1,15 +1,18 @@
 import Link from 'next/link';
 
 // 予約完了ページ
-export default function ReservationCompletePage({
+export default async function ReservationCompletePage({
   searchParams,
 }: {
-  searchParams: { name?: string; date?: string; time?: string };
+  searchParams: Promise<{ name?: string; date?: string; time?: string }>;
 }) {
+  // searchParamsをawaitしてから使用
+  const resolvedParams = await searchParams;
+  
   // URLパラメータから予約情報を取得
-  const name = searchParams.name || '';
-  const date = searchParams.date || '';
-  const time = searchParams.time || '';
+  const name = resolvedParams.name || '';
+  const date = resolvedParams.date || '';
+  const time = resolvedParams.time || '';
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
