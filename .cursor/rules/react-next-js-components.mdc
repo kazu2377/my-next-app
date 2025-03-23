@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: React/Next.js component specific rules. This includes using functional components, JSX, styling, and other React/Next.js conventions.
 globs: components/**/*.{ts,js,jsx,tsx}
 ---
