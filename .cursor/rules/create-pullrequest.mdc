@@ -3,6 +3,11 @@ description: pull request作成
 globs: 
 alwaysApply: false
 ---
+---
+description: pull request作成
+globs: 
+alwaysApply: false
+---
 
 
 ## pull request作成手順
