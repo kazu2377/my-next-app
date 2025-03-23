@@ -494,7 +494,7 @@ export default async function ReservationPage({
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-        予約管理システム
+        予約登録
       </h1>
       
       <AvailableDatesList />
@@ -505,10 +505,6 @@ export default async function ReservationPage({
       
       <Suspense fallback={<div>フォームを読み込み中...</div>}>
         <ReservationForm searchParams={resolvedParams} />
-      </Suspense>
-      
-      <Suspense fallback={<div>読み込み中...</div>}>
-        <ReservationsList />
       </Suspense>
     </div>
   );
