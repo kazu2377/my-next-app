@@ -49,7 +49,7 @@ function generateTimeSlots() {
   return slots;
 }
 
-// Supabaseから予約データを取得する関数
+// 予約用データを取得する関数
 async function getReservations() {
   const { data, error } = await supabase
     .from('reservations')
@@ -147,47 +147,7 @@ async function addReservation(formData: FormData) {
   redirect('/reservation_s/complete?name=' + encodeURIComponent(name) + '&date=' + encodeURIComponent(date) + '&time=' + encodeURIComponent(time));
 }
 
-// 予約リスト表示コンポーネント
-async function ReservationsList() {
-  // Supabaseから予約データを取得
-  const reservations = await getReservations();
-  
-  return (
-    <div className="mt-8">
-      <h2 className="text-xl font-semibold mb-4">現在の予約一覧</h2>
-      {reservations.length === 0 ? (
-        <p>予約はまだありません</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700">
-            <thead>
-              <tr className="bg-gray-100 dark:bg-gray-700">
-                <th className="py-2 px-4 border-b">名前</th>
-                <th className="py-2 px-4 border-b">電話番号</th>
-                <th className="py-2 px-4 border-b">メールアドレス</th>
-                <th className="py-2 px-4 border-b">日付</th>
-                <th className="py-2 px-4 border-b">時間</th>
-                <th className="py-2 px-4 border-b">備考</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reservations.map((reservation) => (
-                <tr key={reservation.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <td className="py-2 px-4 border-b">{reservation.name}</td>
-                  <td className="py-2 px-4 border-b">{reservation.phone}</td>
-                  <td className="py-2 px-4 border-b">{reservation.email}</td>
-                  <td className="py-2 px-4 border-b">{reservation.date}</td>
-                  <td className="py-2 px-4 border-b">{reservation.time}</td>
-                  <td className="py-2 px-4 border-b">{reservation.notes}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
-}
+// 
 
 // 予約済み日時一覧表示コンポーネント
 async function ReservedDatesList() {

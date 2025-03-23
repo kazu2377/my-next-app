@@ -1,18 +1,17 @@
 'use client';
 
 import {
-    addReservation,
-    deleteReservation,
-    getAllReservations,
-    getReservationById,
-    updateReservation
+  addReservation,
+  deleteReservation,
+  getAllReservations,
+  getReservationById,
+  updateReservation
 } from '@/lib/reservations';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // 予約データの型定義
 type Reservation = {
-  id: number;
+  id: number | string; // IDは文字列または数値
   name: string;
   phone: string;
   email: string;
@@ -25,7 +24,7 @@ type Reservation = {
 type ActionResponse = {
   success: boolean;
   error?: string;
-  data?: any;
+  data?: Reservation[] | Reservation;
 };
 
 export default function AdminDashboard() {
@@ -38,8 +37,6 @@ export default function AdminDashboard() {
   const [currentReservation, setCurrentReservation] = useState<Reservation | null>(null);
   const [isAdding, setIsAdding] = useState(false);
 
-  const router = useRouter();
-
   // 空の予約フォームを用意
   const emptyReservation: Reservation = {
     id: 0,
@@ -51,14 +48,8 @@ export default function AdminDashboard() {
     notes: ''
   };
 
-  // 管理者認証チェック
-  useEffect(() => {
-    console.log('認証チェック実行中...');
-    checkAuthentication();
-  }, []);
-
   // 認証チェック関数
-  const checkAuthentication = () => {
+  const checkAuthentication = useCallback(() => {
     // ローカルストレージから認証情報を取得
     const adminSession = localStorage.getItem('adminSession');
     console.log('adminSession:', adminSession ? '存在します' : 'ありません');
@@ -89,7 +80,13 @@ export default function AdminDashboard() {
       localStorage.removeItem('adminSession');
       window.location.href = '/administrators';
     }
-  };
+  }, []);
+
+  // 管理者認証チェック
+  useEffect(() => {
+    console.log('認証チェック実行中...');
+    checkAuthentication();
+  }, [checkAuthentication]);
 
   // 管理者ログアウト処理
   const handleLogout = () => {
@@ -106,7 +103,9 @@ export default function AdminDashboard() {
       const response: ActionResponse = await getAllReservations();
       
       if (response.success && response.data) {
-        setReservations(response.data);
+        // 配列であることを確認
+        const reservationsData = Array.isArray(response.data) ? response.data : [response.data];
+        setReservations(reservationsData);
       } else {
         setError(response.error || '予約データの取得に失敗しました');
       }
@@ -119,7 +118,7 @@ export default function AdminDashboard() {
   };
 
   // 予約削除処理
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number | string) => {
     if (!window.confirm('この予約を削除してもよろしいですか？')) {
       return;
     }
@@ -146,7 +145,7 @@ export default function AdminDashboard() {
   };
 
   // 予約編集モードに切り替え
-  const handleEdit = async (id: number) => {
+  const handleEdit = async (id: number | string) => {
     setIsLoading(true);
     setError(null);
     
@@ -154,7 +153,9 @@ export default function AdminDashboard() {
       const response: ActionResponse = await getReservationById(id.toString());
       
       if (response.success && response.data) {
-        setCurrentReservation(response.data);
+        // 単一のオブジェクトであることを確認
+        const reservationData = Array.isArray(response.data) ? response.data[0] : response.data;
+        setCurrentReservation(reservationData);
         setIsEditing(true);
       } else {
         setError(response.error || '予約データの取得に失敗しました');

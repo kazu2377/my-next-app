@@ -1,13 +1,11 @@
 'use client';
 
 import { verifyAdminCredentials } from '@/lib/auth';
-import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 
 export default function AdminLoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   
   // コンポーネントマウント時に既にログイン済みかチェック
   useEffect(() => {
@@ -22,11 +20,12 @@ export default function AdminLoginPage() {
           window.location.href = '/administrators/dashboard?loggedIn=true';
         }
       } catch (error) {
-        // JSONパースエラーなどの場合は無視
+        // JSONパースエラーなどの場合はセッションを削除
+        console.error('セッション解析エラー:', error);
         localStorage.removeItem('adminSession');
       }
     }
-  }, [router]);
+  }, []);
   
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
