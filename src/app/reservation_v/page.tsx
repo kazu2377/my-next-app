@@ -241,10 +241,10 @@ function AvailableDatesList() {
 async function ReservationFormContainer({ 
   searchParams 
 }: { 
-  searchParams?: { selectedDate?: string, error?: string, success?: string } | Promise<{ selectedDate?: string, error?: string, success?: string }>
+  searchParams: Promise<{ selectedDate?: string, error?: string, success?: string }> | undefined;
 }) {
   // searchParamsの各プロパティを安全に取得
-  const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams || {};
+  const resolvedParams = searchParams ? await searchParams : {};
   const selectedDate = resolvedParams.selectedDate || '';
   const error = resolvedParams.error;
   
@@ -315,7 +315,7 @@ async function ReservationFormContainer({
 export default async function ReservationPage({
   searchParams
 }: {
-  searchParams?: { selectedDate?: string, error?: string, success?: string } | Promise<{ selectedDate?: string, error?: string, success?: string }>
+  searchParams: Promise<{ selectedDate?: string, error?: string, success?: string }> | undefined;
 }) {
   return (
     <div className="space-y-6">
