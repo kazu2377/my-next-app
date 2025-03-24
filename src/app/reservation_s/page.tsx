@@ -264,9 +264,6 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
   // 選択された日付に応じて利用可能な時間のリスト
   const availableTimesForSelectedDate = selectedDate ? getAvailableTimesForDate(selectedDate) : timeSlots;
   
-  // nonce値を生成 (ダブルサブミット防止用トークン)
-  const nonce = Date.now().toString(36) + Math.random().toString(36).substring(2, 15);
-  
   return (
     <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">新規予約</h2>

@@ -42,7 +42,7 @@ export async function sendReservationConfirmation({
   }
 
   try {
-    const { data, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: `予約システム <${process.env.RESEND_FROM_EMAIL || 'reservations@example.com'}>`,
       to: email,
       subject: `【予約確認】${date} ${time}のご予約`,
