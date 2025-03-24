@@ -3,6 +3,7 @@ import { ReservationType, supabase } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+import { DateSelector } from "./components/DateSelector";
 import { ReservationForm } from "./components/ReservationForm";
 
 // 環境変数から予約可能な日付と時間を取得する関数
@@ -266,22 +267,12 @@ async function ReservationFormContainer({
     return (
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">日付を選択</h2>
-        <form action={selectDate}>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <input
-              type="date"
-              name="date"
-              required
-              className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:text-white"
-            />
-            <button
-              type="submit"
-              className="sm:w-auto w-full py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md transition duration-200"
-            >
-              日付を選択
-            </button>
-          </div>
-        </form>
+        <Suspense fallback={<div>読み込み中...</div>}>
+          <DateSelector 
+            availableDates={availableDates} 
+            onSelectDate={selectDate} 
+          />
+        </Suspense>
       </div>
     );
   }
