@@ -12,11 +12,13 @@
 		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
 	},
 	"dependencies": {
+		"@react-email/components": "^0.0.34",
 		"@supabase/supabase-js": "^2.49.1",
 		"date-fns": "^4.1.0",
 		"next": "15.2.3",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"resend": "^4.1.2"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250320.0",

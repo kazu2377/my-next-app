@@ -1,3 +1,4 @@
+import { sendReservationConfirmation } from "@/lib/email";
 import { ReservationType, supabase } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -138,6 +139,16 @@ async function addReservation(formData: FormData) {
     console.error('予約保存エラー:', error);
     redirect(`/reservation_s?error=${encodeURIComponent('予約の保存中にエラーが発生しました')}`);
     return;
+  }
+  
+  // 予約確認メールを送信
+  const emailResult = await sendReservationConfirmation({
+    reservation: newReservation
+  });
+  
+  if (!emailResult.success) {
+    console.error('予約確認メール送信エラー:', emailResult.error);
+    // メール送信に失敗しても予約自体は成功しているので、エラーログだけ記録
   }
   
   // ページを再検証して最新データを表示
