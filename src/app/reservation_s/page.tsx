@@ -1,3 +1,4 @@
+import { sendReservationConfirmation } from "@/lib/email";
 import { ReservationType, supabase } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -108,18 +109,27 @@ async function addReservation(formData: FormData) {
     return;
   }
   
-  // 予約済みの日時かどうかをチェックする
-  const reservedDateTimes = await getReservedDateTimes();
-  const isAlreadyReserved = reservedDateTimes.some(
-    reservedDateTime => reservedDateTime.date === date && reservedDateTime.time === time
-  );
+  // 重要: リアルタイムで最新の予約状況を直接データベースから取得
+  // 画面表示時のキャッシュではなく、フォーム送信時点の最新データをチェックする
+  const { data: latestReservations, error: fetchError } = await supabase
+    .from('reservations')
+    .select('*')
+    .eq('date', date)
+    .eq('time', time);
   
-  if (isAlreadyReserved) {
-    // すでに予約済みの場合は処理を中断し、エラーメッセージを表示
-    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('すでに予約されています。再度別な日時を選択してください。')}`);
+  if (fetchError) {
+    console.error('予約データの取得エラー:', fetchError);
+    redirect(`/reservation_s?error=${encodeURIComponent('予約状況の確認中にエラーが発生しました')}`);
     return;
   }
   
+  // すでに予約済みの場合は処理を中断
+  if (latestReservations && latestReservations.length > 0) {
+    redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('この日時はすでに予約されています。再度別な時間を選択してください。')}`);
+    return;
+  }
+  
+  // 新規予約情報を作成
   const newReservation = {
     name,
     phone,
@@ -129,15 +139,31 @@ async function addReservation(formData: FormData) {
     date
   };
   
-  // Supabaseに予約データを保存
+  // 修正: countを取得せず、単純にinsert操作を実行
   const { error } = await supabase
     .from('reservations')
     .insert([newReservation]);
   
   if (error) {
+    // 競合エラー（同時に同じ時間枠に予約があった場合）
+    if (error.code === '23505') { // PostgreSQLの一意性制約違反コード
+      redirect(`/reservation_s?selectedDate=${encodeURIComponent(date)}&error=${encodeURIComponent('申し訳ありませんが、ちょうど今、他の方がこの日時を予約されました。別の時間を選択してください。')}`);
+      return;
+    }
+    
     console.error('予約保存エラー:', error);
     redirect(`/reservation_s?error=${encodeURIComponent('予約の保存中にエラーが発生しました')}`);
     return;
+  }
+  
+  // 予約確認メールを送信
+  const emailResult = await sendReservationConfirmation({
+    reservation: newReservation
+  });
+  
+  if (!emailResult.success) {
+    console.error('予約確認メール送信エラー:', emailResult.error);
+    // メール送信に失敗しても予約自体は成功しているので、エラーログだけ記録
   }
   
   // ページを再検証して最新データを表示
@@ -436,6 +462,17 @@ async function ReservationForm({ searchParams }: { searchParams?: { selectedDate
           >
             予約する
           </button>
+          <div className="mt-2 p-3 bg-yellow-50 dark:bg-yellow-900 border border-yellow-200 dark:border-yellow-800 rounded">
+            <div className="flex items-center text-yellow-700 dark:text-yellow-200 mb-1">
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span className="font-medium">ご注意ください</span>
+            </div>
+            <p className="text-sm text-yellow-600 dark:text-yellow-300">
+              「予約する」ボタンは<strong>1回だけ</strong>クリックしてください。予約処理には数秒かかる場合があります。
+            </p>
+          </div>
         </div>
       </form>
     </div>
