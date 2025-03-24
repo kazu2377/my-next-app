@@ -240,11 +240,12 @@ function AvailableDatesList() {
 async function ReservationFormContainer({ 
   searchParams 
 }: { 
-  searchParams?: { selectedDate?: string, error?: string, success?: string } 
+  searchParams?: { selectedDate?: string, error?: string, success?: string } | Promise<{ selectedDate?: string, error?: string, success?: string }>
 }) {
   // searchParamsの各プロパティを安全に取得
-  const selectedDate = searchParams?.selectedDate || '';
-  const error = searchParams?.error;
+  const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams || {};
+  const selectedDate = resolvedParams.selectedDate || '';
+  const error = resolvedParams.error;
   
   const timeSlots = generateTimeSlots();
   const { availableDates } = getAvailableDatesAndTimes();
@@ -259,7 +260,7 @@ async function ReservationFormContainer({
   };
   
   // 選択された日付の利用可能時間枠を取得
-  const availableTimesForDate = timeSlots.filter(time => !isDateTimeReserved(selectedDate, time));
+  const availableTimesForDate = timeSlots.filter((time: string) => !isDateTimeReserved(selectedDate, time));
   
   if (!selectedDate || !isDateAvailable) {
     return (
@@ -323,7 +324,7 @@ async function ReservationFormContainer({
 export default async function ReservationPage({
   searchParams
 }: {
-  searchParams?: { selectedDate?: string, error?: string, success?: string }
+  searchParams?: { selectedDate?: string, error?: string, success?: string } | Promise<{ selectedDate?: string, error?: string, success?: string }>
 }) {
   return (
     <div className="space-y-6">

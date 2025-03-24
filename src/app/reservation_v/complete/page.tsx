@@ -4,10 +4,10 @@ import Link from 'next/link';
 export default async function ReservationCompletePage({
   searchParams,
 }: {
-  searchParams: Promise<{ name?: string; date?: string; time?: string }>;
+  searchParams: { name?: string; date?: string; time?: string } | Promise<{ name?: string; date?: string; time?: string }>;
 }) {
-  // searchParamsをawaitしてから使用
-  const resolvedParams = await searchParams;
+  // searchParamsをawaitしてから使用（Promise型の場合）
+  const resolvedParams = searchParams instanceof Promise ? await searchParams : searchParams;
   
   // URLパラメータから予約情報を取得
   const name = resolvedParams.name || '';
