@@ -35,6 +35,7 @@ export default function RootLayout({
               <Link href="/" className="hover:text-blue-500">Home</Link>
               <Link href="/about" className="hover:text-blue-500">About</Link>
               <Link href="/contact" className="hover:text-blue-500">Contact</Link>
+              <Link href="/recruit" className="hover:text-blue-500">採用情報</Link>
               <Link href="/reservation_v" className="hover:text-blue-500">予約</Link>
               <Link href="/administrators" className="hover:text-blue-500">管理</Link>
             </div>
