@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あなたのブランド名｜日常の中の、ちょっと特別なひととき</title> <!-- ★ブランド名に合わせて変更 -->
+    <meta name="description" content="手作りが生み出す、心温まる時間を提供する[あなたのブランド名]の公式サイト。ワークショップや最新情報はこちらから。"> <!-- ★内容に合わせて変更 -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="code.css">
+    <!-- Webフォント (例: Google Fonts - 必要に応じて追加・変更) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet"> <!-- 例: 丸ゴシック系 -->
+    <!-- <link rel="icon" href="favicon.ico"> -->
+</head>
+<body>
+
+    <!-- 1. ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/" class="header-logo">
+                <!-- ロゴ画像 or テキスト -->
+                <img src="https://via.placeholder.com/120x40/F5A100/FFFFFF?text=LOGO" alt="ブランドロゴ"> <!-- ★ロゴ画像に変更 -->
+            </a>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#service">Service</a></li>
+                    <li><a href="#stores">Stores</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact" class="header-nav-contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- SP用ナビゲーション -->
+    <div class="sp-nav">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#stores">Stores</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- 2. メインビジュアル -->
+        <section class="main-visual">
+            <div class="main-visual-content">
+                <div class="main-visual-text">
+                    <h1>やすみを、<br>もっととくべつに。</h1>
+                    <p>手作りの時間がくれる、心温まるひとときを。</p>
+                </div>
+                <div class="main-visual-images">
+                    <!-- コラージュ風に写真を配置 (CSSで位置調整) -->
+                    <img src="https://images.unsplash.com/photo-1516797118412-75c9a38643f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="イメージ写真1" class="img1">
+                    <img src="https://images.unsplash.com/photo-1618083805591-4bfc3a34f287?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="イメージ写真2" class="img2">
+                    <img src="https://images.unsplash.com/photo-1596464716123-2a8476481a9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="イメージ写真3" class="img3">
+                    <!-- 装飾イラスト (CSSの疑似要素 or imgタグで追加) -->
+                    <span class="deco deco-star1"></span>
+                    <span class="deco deco-line1"></span>
+                </div>
+            </div>
+             <!-- 下部へのスクロールを促す要素など (任意) -->
+        </section>
+
+        <!-- 区切り装飾 (例) -->
+        <div class="section-divider wave-divider"></div>
+
+        <!-- 3. アバウト -->
+        <section id="about" class="section about">
+            <div class="container">
+                <h2 class="section-title fade-in">About</h2>
+                <div class="about-content fade-in">
+                    <div class="about-text">
+                        <h3>やすみを、<br>もっと特別な時間に。</h3>
+                        <p>
+                            私たちは、日常から少し離れてワクワクする時間をご提供します。<br>
+                            手作り体験や特別な空間を通じて、「何か新しいことをしてみたい」「特別な思い出をつくりたい」そんな気持ちに寄り添います。
+                        </p>
+                        <p>
+                            あなただけの"やすみ"が、もっと心に残るひとときになりますように。
+                        </p>
+                        <a href="#" class="btn btn-outline">もっとくわしく <span class="arrow">→</span></a> <!-- 詳細ページがあれば -->
+                    </div>
+                    <div class="about-image">
+                        <!-- イラスト or 写真 -->
+                        <img src="https://images.unsplash.com/photo-1545291763-b8d93041e434?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="ブランドイメージ">
+                         <!-- 装飾イラスト -->
+                        <span class="deco deco-heart1"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. サービス紹介 -->
+        <section id="service" class="section service bg-light-orange">
+            <div class="container">
+                <h2 class="section-title fade-in">Service</h2>
+                <div class="service-grid">
+                    <div class="service-item fade-in">
+                        <span class="service-number">01</span>
+                        <div class="service-image">
+                            <!-- イラスト or 写真 -->
+                            <img src="https://images.unsplash.com/photo-1580130379629-42b104a91499?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="ワークショップ">
+                            <!-- 装飾 -->
+                            <span class="deco deco-sparkle1"></span>
+                        </div>
+                        <h3>手作りワークショップ</h3>
+                        <p>陶器作りやキャンドル作りなど、日常ではなかなか味わえないモノづくりの楽しさを体験。初心者の方も大歓迎です。</p>
+                        <a href="#" class="btn btn-outline">店舗をみる <span class="arrow">→</span></a>
+                    </div>
+                    <div class="service-item fade-in">
+                        <span class="service-number">02</span>
+                         <div class="service-image">
+                             <!-- イラスト or 写真 -->
+                             <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1168&q=80" alt="場所貸し">
+                              <!-- 装飾 -->
+                            <span class="deco deco-plant1"></span>
+                         </div>
+                        <h3>出店・場所貸しサービス</h3>
+                        <p>あなたのアイデアを形にする場所を提供します。クリエイティブなワークショップやお店を開く場として、空間をサポート。</p>
+                        <a href="#contact" class="btn btn-outline">お問い合わせ <span class="arrow">→</span></a>
+                    </div>
+                    <div class="service-item fade-in">
+                         <span class="service-number">03</span>
+                         <div class="service-image">
+                            <!-- イラスト or 写真 -->
+                            <img src="https://images.unsplash.com/photo-1586796676769-1c1043a15954?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="マーケティング支援">
+                             <!-- 装飾 -->
+                            <span class="deco deco-idea1"></span>
+                         </div>
+                        <h3>コンテンツ開発＆<br>マーケティング支援</h3>
+                        <p>体験型コンテンツの企画・運営・収益化をサポート。SNSを活用した集客や、ターゲットに響くコンテンツ作りをお手伝い。</p>
+                         <a href="#contact" class="btn btn-outline">お問い合わせ <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ストア/ワークショップ情報 -->
+        <section id="stores" class="section stores">
+            <div class="container">
+                <h2 class="section-title fade-in">Stores</h2>
+                <div class="stores-grid">
+                    <div class="store-item fade-in">
+                        <div class="store-image">
+                            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=972&q=80" alt="店舗A イメージ">
+                        </div>
+                        <h3>YASUMI LAB NAGOYA (仮)</h3>
+                        <p class="store-address"><span class="icon">📍</span>愛知県名古屋市中区千代田1-13-18</p>
+                        <p class="store-access"><span class="icon">🚃</span>矢場町駅3番出口 / 上前津駅1番出口 徒歩8分</p>
+                        <div class="store-tags">
+                            <span>陶器作り</span>
+                            <span>モールドール</span>
+                            <span>キャンドル</span>
+                        </div>
+                        <div class="store-buttons">
+                            <a href="#" class="btn btn-primary"><span class="icon">📅</span>予約する</a>
+                            <a href="#" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><span class="icon">📷</span>Instagram</a>
+                        </div>
+                         <!-- 装飾 -->
+                        <span class="deco deco-star2"></span>
+                    </div>
+                     <div class="store-item fade-in">
+                        <div class="store-image">
+                            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="店舗B イメージ">
+                        </div>
+                        <h3>Y! Y! hands (仮)</h3>
+                        <p class="store-address"><span class="icon">📍</span>愛知県名古屋市中区丸の内2-10-16</p>
+                        <p class="store-access"><span class="icon">🚃</span>丸の内駅8番出口 徒歩5分 / 伏見駅 徒歩8分</p>
+                        <div class="store-tags">
+                            <span>イタリアンチャーム</span>
+                        </div>
+                         <div class="store-buttons">
+                            <a href="#" class="btn btn-primary"><span class="icon">📅</span>予約する</a>
+                            <a href="#" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><span class="icon">📷</span>Instagram</a>
+                        </div>
+                          <!-- 装飾 -->
+                        <span class="deco deco-dot1"></span>
+                    </div>
+                    <div class="store-item coming-soon fade-in">
+                        <div class="store-image-coming">
+                            <p>Coming Soon!</p>
+                            <!-- 波線などの装飾 -->
+                            <span class="deco deco-wave-line"></span>
+                        </div>
+                        <h3>NEW STORE (仮)</h3>
+                        <p class="store-address"><span class="icon">📍</span>未定</p>
+                        <p class="store-access"><span class="icon">🚃</span></p>
+                        <div class="store-buttons disabled">
+                            <span class="btn btn-primary"><span class="icon">📅</span>準備中</span>
+                            <span class="btn btn-secondary"><span class="icon">📷</span>準備中</span>
+                        </div>
+                        <!-- 装飾 -->
+                        <span class="deco deco-heart2"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- 区切り装飾 (例) -->
+        <div class="section-divider line-divider"></div>
+
+        <!-- 6. ニュース -->
+        <section id="news" class="section news">
+            <div class="container-narrow">
+                <h2 class="section-title fade-in">News</h2>
+                <ul class="news-list fade-in">
+                    <li><a href="#"><span class="news-date">2025.03.17</span><span class="news-title">コーポレートサイトをリニューアルしました</span></a></li>
+                    <li><a href="#"><span class="news-date">2025.03.08</span><span class="news-title">韓国の人気ブランドとコラボレーションワークショップを開催</span></a></li>
+                    <li><a href="#"><span class="news-date">2025.03.03</span><span class="news-title">メ〜テレ「ドデスカ＋」にて店舗をご紹介いただきました</span></a></li>
+                    <li><a href="#"><span class="news-date">2025.01.25</span><span class="news-title">法人名を株式会社YASUMI WORKSに変更しました</span></a></li>
+                    <li><a href="#"><span class="news-date">2025.01.07</span><span class="news-title">Y! Y! hands オープン日決定のお知らせ</span></a></li>
+                </ul>
+                <div class="news-more fade-in">
+                    <a href="#" class="btn btn-outline-gray">もっと読み込む <span class="arrow">↓</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. コンタクト -->
+        <section id="contact" class="section contact bg-light-blue">
+            <div class="container-narrow">
+                <h2 class="section-title fade-in">Contact</h2>
+                <form action="#" method="post" class="contact-form fade-in">
+                    <div class="form-group">
+                        <label for="name">お名前 <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>お問い合わせ項目 <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="inquiry_type" value="場所貸し・出店希望" required> 場所貸し・出店希望</label>
+                            <label><input type="radio" name="inquiry_type" value="その他"> その他お問い合わせ</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">お問い合わせ詳細 <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-submit">送信する <span class="arrow">→</span></button>
+                    </div>
+                </form>
+                 <!-- 装飾 -->
+                 <span class="deco deco-mail1"></span>
+                 <span class="deco deco-bubble1"></span>
+            </div>
+        </section>
+
+        <!-- 8. フッター -->
+        <footer class="footer">
+             <!-- フッター上部の装飾帯 (CSSの背景 or img/svg) -->
+            <div class="footer-decoration">
+                <!-- 例: <img src="images/footer-pattern.svg" alt=""> -->
+            </div>
+            <div class="footer-container">
+                <div class="footer-logo">
+                     <!-- ロゴ画像 or テキスト -->
+                    <img src="https://via.placeholder.com/150x50/333333/FFFFFF?text=LOGO" alt="ブランドロゴ フッター"> <!-- ★ロゴ画像に変更 -->
+                </div>
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#service">Service</a></li>
+                        <li><a href="#stores">Stores</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                         <li><a href="#">Privacy Policy</a></li> <!-- 必要なら -->
+                    </ul>
+                </nav>
+                <!-- SNSリンクなど (任意) -->
+                <!--
+                <div class="footer-sns">
+                    <a href="#" target="_blank" rel="noopener noreferrer">[Insta Icon]</a>
+                    <a href="#" target="_blank" rel="noopener noreferrer">[Twitter Icon]</a>
+                </div>
+                -->
+                <p class="copyright">&copy; 2024 Your Brand Name.</p> <!-- ★ブランド名と年に変更 -->
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="code.js"></script>
+    <!-- Google Analytics など -->
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>採用サイト制作に強いホームページ制作会社 株式会社SPC｜企業の採用成功をデザイン</title>
+    <meta name="description" content="株式会社SPCは採用LP・サイト制作に特化したWeb制作会社です。企業の魅力を最大限に引き出し、求める人材とのマッチングを実現する戦略的なWebソリューションを提供します。">
+    <!-- CSSへのリンク（実際のファイルパスを指定） -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fontsなどの外部フォント読み込み（例） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Faviconの設定 -->
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+
+    <!-- 1. ヘッダー -->
+    <header class="header">
+        <!-- CSS: スクロール追従 (position: fixed;), 背景色, パディング -->
+        <div class="header-container">
+            <a href="/" class="header-logo">
+                <img src="images/logo-spc.png" alt="株式会社SPC ロゴ">
+            </a>
+            <p class="header-tagline">採用サイト制作に強いホームページ制作会社</p>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#strength">SPCの強み</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#process">制作プロセス</a></li>
+                    <li><a href="#casestudy">成功事例</a></li>
+                    <li><a href="#contact" class="header-nav-contact">お問い合わせ</a></li>
+                    <!-- CSS: ナビゲーションのレイアウト（横並び）, ホバーエフェクト, お問い合わせボタンのデザイン -->
+                </ul>
+            </nav>
+            <!-- SP用ハンバーガーメニューボタン（JSで開閉） -->
+            <button class="hamburger-menu" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- SP用ナビゲーションメニュー（初期状態は非表示, JSで表示） -->
+    <div class="sp-nav">
+        <ul>
+            <li><a href="#strength">SPCの強み</a></li>
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#process">制作プロセス</a></li>
+            <li><a href="#casestudy">成功事例</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- 2. メインビジュアル -->
+        <section class="main-visual">
+            <!-- CSS: 背景画像/動画, 高さ, テキストの配置（中央揃えなど）, パララックス効果 -->
+            <!-- JS: テキストのフェードインアニメーション -->
+            <div class="main-visual-content">
+                <h1>その採用サイト、本当に「響いて」いますか？</h1>
+                <p>企業の未来を担う人材と出会うための<br>『勝てる採用戦略』をデザインします。</p>
+                <div class="main-visual-cta">
+                    <a href="#contact" class="cta-button primary">まずは無料相談する</a>
+                    <a href="#casestudy" class="cta-button secondary">制作事例を見る</a>
+                    <!-- CSS: ボタンデザイン（色、形、ホバーエフェクト） -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SPCの強み・選ばれる理由 -->
+        <section id="strength" class="section strength">
+            <div class="container">
+                <h2 class="section-title">SPCが「採用」に強い理由</h2>
+                <p class="section-lead">私たちは単なるホームページ制作会社ではありません。<br>採用活動に特化したノウハウとWeb技術を融合させ、貴社の採用成功をコミットする戦略パートナーです。</p>
+                <!-- JS: スクロールに応じて各要素がフェードインするアニメーション -->
+                <div class="strength-grid">
+                    <div class="strength-item">
+                        <div class="strength-icon">
+                            <!-- CSS: アイコン画像 or Font Awesomeなど -->
+                            <img src="images/icon-insight.svg" alt="採用特化の知見アイコン">
+                        </div>
+                        <h3>採用特化の深い知見</h3>
+                        <p>最新の採用トレンド、候補者の行動・心理を深く理解。ターゲットに響く最適なメッセージングとコンテンツ戦略を立案します。</p>
+                    </div>
+                    <div class="strength-item">
+                        <div class="strength-icon">
+                            <img src="images/icon-data.svg" alt="データに基づく戦略アイコン">
+                        </div>
+                        <h3>データに基づく戦略設計</h3>
+                        <p>アクセス解析、競合分析に基づき、客観的なデータに基づいたUI/UX設計、コンテンツ改善を実施。KPI達成を論理的に目指します。</p>
+                    </div>
+                    <div class="strength-item">
+                        <div class="strength-icon">
+                            <img src="images/icon-web-hr.svg" alt="Web制作×採用支援アイコン">
+                        </div>
+                        <h3>Web制作 × 採用支援の融合</h3>
+                        <p>高いデザイン性と技術力に加え、採用コンサルティングの視点を融合。企業の魅力と求める人物像を的確に表現します。</p>
+                    </div>
+                    <div class="strength-item">
+                        <div class="strength-icon">
+                            <img src="images/icon-tool.svg" alt="採用ツール開発アイコン">
+                        </div>
+                        <h3>採用ツール開発の専門性</h3>
+                        <p>応募者管理、選考フロー自動化など、採用活動を効率化・高度化するWebツールの開発も得意としています。</p>
+                    </div>
+                </div>
+                <!-- 競合比較表 (オプション) -->
+                <!--
+                <h3 class="sub-title">他社との比較</h3>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>項目</th>
+                                <th>SPC</th>
+                                <th>一般的な<br>Web制作会社</th>
+                                <th>採用コンサル<br>会社</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>採用専門性</td>
+                                <td>◎</td>
+                                <td>△</td>
+                                <td>〇</td>
+                            </tr>
+                            <tr>
+                                <td>データ分析力</td>
+                                <td>◎</td>
+                                <td>△</td>
+                                <td>△</td>
+                            </tr>
+                            <tr>
+                                <td>ツール開発力</td>
+                                <td>〇</td>
+                                <td>×</td>
+                                <td>×</td>
+                            </tr>
+                            <tr>
+                                <td>デザイン性</td>
+                                <td>◎</td>
+                                <td>〇</td>
+                                <td>△</td>
+                            </tr>
+                            <tr>
+                                <td>サポート体制</td>
+                                <td>◎</td>
+                                <td>〇</td>
+                                <td>〇</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="caption">◎:非常に得意 〇:得意 △:可能 ×:不得意・対象外</p>
+                </div>
+                -->
+            </div>
+        </section>
+
+        <!-- 4. サービス紹介 -->
+        <section id="services" class="section services bg-lightgray">
+            <!-- CSS: 背景色 -->
+            <div class="container">
+                <h2 class="section-title">採用成功を実現するSPCのサービス</h2>
+                <p class="section-lead">採用LP制作を中心に、企業の採用課題を解決するための多様なソリューションを提供します。</p>
+                <div class="services-grid">
+                    <!-- JS: スクロールに応じて各要素がフェードインするアニメーション -->
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="images/icon-website.svg" alt="採用LP/サイト制作アイコン">
+                        </div>
+                        <h3>採用LP/サイト制作</h3>
+                        <p>企業の魅力と求める人物像を明確化し、候補者の心に響くストーリーを設計。応募意欲を高める戦略的な採用LP・サイトを構築します。</p>
+                        <!-- <a href="/service/website/" class="service-link">詳細を見る</a> -->
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="images/icon-video.svg" alt="企業紹介動画制作アイコン">
+                        </div>
+                        <h3>企業紹介動画制作</h3>
+                        <p>テキストだけでは伝わらない社風や働く人のリアルな声を映像化。共感を呼び、候補者の入社意欲を高める動画を制作します。</p>
+                        <!-- <a href="/service/video/" class="service-link">詳細を見る</a> -->
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <img src="images/icon-dev-tool.svg" alt="採用ツール開発アイコン">
+                        </div>
+                        <h3>採用ツール開発</h3>
+                        <p>説明会予約システム、応募者管理ツールなど、選考プロセスを効率化・最適化するカスタムツールの企画・開発を行います。</p>
+                        <!-- <a href="/service/tool/" class="service-link">詳細を見る</a> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 制作プロセス -->
+        <section id="process" class="section process">
+            <div class="container">
+                <h2 class="section-title">成果を生み出すSPCの制作フロー</h2>
+                <p class="section-lead">徹底的なヒアリングから始まる当社の制作プロセスは、企業の独自性と求職者のニーズを分析し、最適な採用コミュニケーションツールを構築します。</p>
+                <!-- JS: スクロールに応じて各ステップが順番に表示されるアニメーション -->
+                <ol class="process-list">
+                    <li class="process-item">
+                        <div class="process-step-number">STEP 1</div>
+                        <div class="process-content">
+                            <h3>企画・戦略設計</h3>
+                            <p>貴社の採用課題、ターゲット、企業文化、競合状況を徹底的にヒアリング・分析。採用目標達成に向けたWeb戦略とサイトの骨子を定義します。</p>
+                        </div>
+                        <div class="process-image">
+                           <img src="images/process-step1.jpg" alt="企画・戦略設計のイメージ">
+                           <!-- CSS: 画像の配置、スタイリング -->
+                        </div>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-step-number">STEP 2</div>
+                        <div class="process-content">
+                            <h3>UI/UX・デザイン設計</h3>
+                            <p>候補者視点での最適な情報構造（IA）、画面遷移（ワイヤーフレーム）、直感的で魅力的なビジュアルデザイン（モックアップ）を設計します。</p>
+                        </div>
+                         <div class="process-image">
+                           <img src="images/process-step2.jpg" alt="UI/UX・デザイン設計のイメージ">
+                        </div>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-step-number">STEP 3</div>
+                        <div class="process-content">
+                            <h3>制作・開発</h3>
+                            <p>最新技術と洗練されたデザインで、高品質なサイト・ツールを構築。レスポンシブ対応、表示速度最適化、基本的なSEO対策も標準で行います。</p>
+                        </div>
+                         <div class="process-image">
+                           <img src="images/process-step3.jpg" alt="制作・開発のイメージ">
+                        </div>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-step-number">STEP 4</div>
+                        <div class="process-content">
+                            <h3>公開・効果検証・改善</h3>
+                            <p>サイト公開後も、アクセス解析や効果測定を実施。データに基づき改善提案を行い、継続的に採用成果の最大化を目指します。</p>
+                        </div>
+                         <div class="process-image">
+                           <img src="images/process-step4.jpg" alt="公開・効果検証・改善のイメージ">
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 6. 成功事例 -->
+        <section id="casestudy" class="section casestudy bg-lightgray">
+            <!-- CSS: 背景色 -->
+            <div class="container">
+                <h2 class="section-title">SPCが生み出した採用成果</h2>
+                <!-- JS: スライダー or カード型レイアウト, スクロールアニメーション -->
+                <div class="casestudy-grid">
+                    <div class="casestudy-item">
+                        <div class="casestudy-image">
+                            <img src="images/casestudy-client-a-logo.png" alt="クライアントA ロゴ" class="casestudy-logo">
+                            <img src="images/casestudy-client-a-site.jpg" alt="クライアントA 制作サイトスクリーンショット">
+                        </div>
+                        <div class="casestudy-content">
+                            <p><strong>課題:</strong> 知名度が低く母集団形成に苦戦</p>
+                            <p><strong>施策:</strong> ターゲットを絞ったLPコンテンツ設計、社員インタビュー動画</p>
+                            <p><strong>成果:</strong> <span class="highlight">応募率が前年比200%向上</span></p>
+                        </div>
+                    </div>
+                    <div class="casestudy-item">
+                         <div class="casestudy-image">
+                            <img src="images/casestudy-client-b-logo.png" alt="クライアントB ロゴ" class="casestudy-logo">
+                            <img src="images/casestudy-client-b-site.jpg" alt="クライアントB 制作サイトスクリーンショット">
+                        </div>
+                        <div class="casestudy-content">
+                            <p><strong>課題:</strong> 求めるスキルを持つ人材からの応募が少ない</p>
+                            <p><strong>施策:</strong> 技術ブログ連携、エンジニア向けコンテンツ強化</p>
+                            <p><strong>成果:</strong> <span class="highlight">特定スキル保有者の応募数が3倍に</span></p>
+                        </div>
+                    </div>
+                    <div class="casestudy-item">
+                         <div class="casestudy-image">
+                            <img src="images/casestudy-client-c-logo.png" alt="クライアントC ロゴ" class="casestudy-logo">
+                            <img src="images/casestudy-client-c-site.jpg" alt="クライアントC 制作サイトスクリーンショット">
+                        </div>
+                        <div class="casestudy-content">
+                            <p><strong>課題:</strong> 内定辞退率が高い</p>
+                            <p><strong>施策:</strong> 企業文化を伝えるコンテンツ拡充、オンライン会社説明会ツール導入</p>
+                            <p><strong>成果:</strong> <span class="highlight">内定承諾率が15%改善</span></p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="section-cta">
+                     <a href="/casestudy/" class="cta-button secondary">その他の事例を見る</a>
+                     <!-- CSS: ボタンを中央寄せ, 上下マージン -->
+                 </div>
+            </div>
+        </section>
+
+        <!-- 8. お問い合わせ・資料請求 -->
+        <section id="contact" class="section contact">
+            <!-- CSS: 背景色やデザイン要素 -->
+            <div class="container">
+                <h2 class="section-title">さあ、貴社に最適な採用戦略を始めませんか？</h2>
+                <p class="section-lead">採用に関するお悩み、Webサイトに関するご相談など、まずはお気軽にお問い合わせください。<br>専門スタッフが丁寧に対応いたします。</p>
+                <div class="contact-cta-area">
+                    <a href="/contact-form/" class="cta-button primary large">無料相談・お問い合わせはこちら</a>
+                    <a href="/download/" class="cta-button secondary large">サービス資料をダウンロード</a>
+                    <!-- CSS: ボタンのサイズ、間隔調整 -->
+                </div>
+                <div class="contact-info">
+                    <p>お電話でのお問い合わせはこちら</p>
+                    <p class="contact-tel"><a href="tel:03-6279-3013">03-6279-3013</a></p>
+                    <p class="contact-hours">受付時間: 10:00～19:00 (土日祝除く)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. 会社情報 -->
+        <section id="company" class="section company bg-lightgray">
+            <div class="container">
+                 <h2 class="section-title">会社概要</h2>
+                 <div class="company-info-flex">
+                     <dl class="company-info-list">
+                         <dt>会社名</dt>
+                         <dd>株式会社SPC</dd>
+                         <dt>所在地</dt>
+                         <dd>[貴社所在地を記載]</dd> <!-- 例: 東京都新宿区XXXXX -->
+                         <dt>電話番号</dt>
+                         <dd>03-6279-3013</dd>
+                         <dt>営業時間</dt>
+                         <dd>10:00～19:00 (土日祝除く)</dd>
+                         <dt>事業内容</dt>
+                         <dd>ホームページ制作、採用サイト制作、Webシステム開発、企業紹介動画制作、採用ツール開発</dd>
+                     </dl>
+                     <div class="company-map">
+                         <!-- Google Map埋め込みコード -->
+                         <iframe src="[Google Map 埋め込み用URL]" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                         <!-- CSS: マップのサイズ調整 -->
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 10. フッター -->
+    <footer class="footer">
+        <!-- CSS: 背景色, パディング, テキスト中央揃え -->
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/logo-spc-white.png" alt="株式会社SPC ロゴ">
+                 <!-- CSS: フッター用ロゴスタイル -->
+            </div>
+            <nav class="footer-nav">
+                 <ul>
+                    <li><a href="#strength">SPCの強み</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#process">制作プロセス</a></li>
+                    <li><a href="#casestudy">成功事例</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                    <li><a href="/privacy-policy/">プライバシーポリシー</a></li>
+                </ul>
+            </nav>
+            <p class="copyright">© SPC Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScriptへのリンク（jQueryやカスタムJSなど）-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Google Analytics タグ -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> <!-- G-XXXXXXXXXX は実際の測定IDに置き換える -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX'); // G-XXXXXXXXXX は実際の測定IDに置き換える
+
+      // 例：CTAボタンクリックのイベント計測
+      // $('.cta-button.primary').on('click', function() {
+      //   gtag('event', 'click', {
+      //     'event_category': 'CTA',
+      //     'event_label': 'FreeConsultation_MV'
+      //   });
+      // });
+    </script>
+</body>
+</html>
+
+
