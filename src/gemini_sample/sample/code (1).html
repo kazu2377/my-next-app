@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>あなたのブランド名｜日常の中の、ちょっと特別なひととき</title> <!-- ★ブランド名に合わせて変更 -->
-    <meta name="description" content="手作りが生み出す、心温まる時間を提供する[あなたのブランド名]の公式サイト。ワークショップや最新情報はこちらから。"> <!-- ★内容に合わせて変更 -->
+    <title>なかのさかうえこう｜コードで、未来を、手作りしよう。</title>
+    <meta name="description" content="なかのさかうえこうのプログラミング教室。楽しく学びながら、創造力を育む。ワクワクする学びで、キミの「つくりたい」をカタチに。初心者歓迎、アットホームな雰囲気でプログラミングの世界へご案内します。">
     <!-- CSS -->
     <link rel="stylesheet" href="code.css">
-    <!-- Webフォント (例: Google Fonts - 必要に応じて追加・変更) -->
+    <!-- Webフォント -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet"> <!-- 例: 丸ゴシック系 -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
     <!-- <link rel="icon" href="favicon.ico"> -->
 </head>
 <body>
@@ -19,16 +19,15 @@
     <header class="header">
         <div class="header-container">
             <a href="/" class="header-logo">
-                <!-- ロゴ画像 or テキスト -->
-                <img src="https://via.placeholder.com/120x40/F5A100/FFFFFF?text=LOGO" alt="ブランドロゴ"> <!-- ★ロゴ画像に変更 -->
+                <h1>なかのさかうえこう</h1>
             </a>
             <nav class="header-nav">
                 <ul>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#service">Service</a></li>
-                    <li><a href="#stores">Stores</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact" class="header-nav-contact">Contact</a></li>
+                    <li><a href="#courses">コース案内</a></li>
+                    <li><a href="#gallery">作品ギャラリー</a></li>
+                    <li><a href="#news">お知らせ</a></li>
+                    <li><a href="#contact" class="header-nav-contact">無料体験申込み</a></li>
                 </ul>
             </nav>
             <button class="hamburger-menu" aria-label="メニューを開く">
@@ -43,10 +42,10 @@
     <div class="sp-nav">
         <ul>
             <li><a href="#about">About</a></li>
-            <li><a href="#service">Service</a></li>
-            <li><a href="#stores">Stores</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#courses">コース案内</a></li>
+            <li><a href="#gallery">作品ギャラリー</a></li>
+            <li><a href="#news">お知らせ</a></li>
+            <li><a href="#contact">無料体験申込み</a></li>
         </ul>
     </div>
 
@@ -55,20 +54,19 @@
         <section class="main-visual">
             <div class="main-visual-content">
                 <div class="main-visual-text">
-                    <h1>やすみを、<br>もっととくべつに。</h1>
-                    <p>手作りの時間がくれる、心温まるひとときを。</p>
+                    <h1>コードで、<br>未来を、手作りしよう。</h1>
+                    <p>ワクワクする学びで、キミの「つくりたい」をカタチに。</p>
                 </div>
                 <div class="main-visual-images">
-                    <!-- コラージュ風に写真を配置 (CSSで位置調整) -->
-                    <img src="https://images.unsplash.com/photo-1516797118412-75c9a38643f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="イメージ写真1" class="img1">
-                    <img src="https://images.unsplash.com/photo-1618083805591-4bfc3a34f287?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="イメージ写真2" class="img2">
-                    <img src="https://images.unsplash.com/photo-1596464716123-2a8476481a9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="イメージ写真3" class="img3">
-                    <!-- 装飾イラスト (CSSの疑似要素 or imgタグで追加) -->
+                    <!-- プログラミング学習の様子を表す写真 -->
+                    <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="楽しくプログラミングを学ぶ生徒" class="img1">
+                    <img src="https://images.unsplash.com/photo-1603354350317-6f7aaa5911c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="プログラミングの成果を確認する様子" class="img2">
+                    <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1031&q=80" alt="カラフルなプログラミングコード" class="img3">
+                    <!-- 装飾イラスト -->
                     <span class="deco deco-star1"></span>
                     <span class="deco deco-line1"></span>
                 </div>
             </div>
-             <!-- 下部へのスクロールを促す要素など (任意) -->
         </section>
 
         <!-- 区切り装飾 (例) -->
@@ -80,126 +78,116 @@
                 <h2 class="section-title fade-in">About</h2>
                 <div class="about-content fade-in">
                     <div class="about-text">
-                        <h3>やすみを、<br>もっと特別な時間に。</h3>
+                        <h3>ゼロから始める、<br>未来をつくる力。</h3>
                         <p>
-                            私たちは、日常から少し離れてワクワクする時間をご提供します。<br>
-                            手作り体験や特別な空間を通じて、「何か新しいことをしてみたい」「特別な思い出をつくりたい」そんな気持ちに寄り添います。
+                            私たちは、プログラミングを通じて「創造する楽しさ」と「考える力」を育みます。<br>
+                            難しそうに見えるプログラミングも、一歩ずつ、楽しみながら学べる環境をご用意しています。
                         </p>
                         <p>
-                            あなただけの"やすみ"が、もっと心に残るひとときになりますように。
+                            アイデアを形にする喜び、問題を解決する達成感、そして未来を創る自信。<br>
+                            なかのさかうえこうで、プログラミングの魅力を体験してみませんか？
                         </p>
-                        <a href="#" class="btn btn-outline">もっとくわしく <span class="arrow">→</span></a> <!-- 詳細ページがあれば -->
+                        <a href="#courses" class="btn btn-outline">コースを見る <span class="arrow">→</span></a>
                     </div>
                     <div class="about-image">
-                        <!-- イラスト or 写真 -->
-                        <img src="https://images.unsplash.com/photo-1545291763-b8d93041e434?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="ブランドイメージ">
-                         <!-- 装飾イラスト -->
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="プログラミングを学ぶ生徒たち">
                         <span class="deco deco-heart1"></span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. サービス紹介 -->
-        <section id="service" class="section service bg-light-orange">
+        <!-- 4. コース紹介 -->
+        <section id="courses" class="section service bg-light-orange">
             <div class="container">
-                <h2 class="section-title fade-in">Service</h2>
+                <h2 class="section-title fade-in">コース案内</h2>
                 <div class="service-grid">
                     <div class="service-item fade-in">
                         <span class="service-number">01</span>
                         <div class="service-image">
-                            <!-- イラスト or 写真 -->
-                            <img src="https://images.unsplash.com/photo-1580130379629-42b104a91499?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="ワークショップ">
-                            <!-- 装飾 -->
+                            <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="はじめてのプログラミング">
                             <span class="deco deco-sparkle1"></span>
                         </div>
-                        <h3>手作りワークショップ</h3>
-                        <p>陶器作りやキャンドル作りなど、日常ではなかなか味わえないモノづくりの楽しさを体験。初心者の方も大歓迎です。</p>
-                        <a href="#" class="btn btn-outline">店舗をみる <span class="arrow">→</span></a>
+                        <h3>はじめてのデジタル探検隊</h3>
+                        <p>プログラミングの基礎を楽しく学ぶ入門コース。ブロックプログラミングを使って、ゲームやアニメーションを作りながら、論理的思考を育みます。</p>
+                        <a href="#contact" class="btn btn-outline">無料体験に申し込む <span class="arrow">→</span></a>
                     </div>
                     <div class="service-item fade-in">
                         <span class="service-number">02</span>
-                         <div class="service-image">
-                             <!-- イラスト or 写真 -->
-                             <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1168&q=80" alt="場所貸し">
-                              <!-- 装飾 -->
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Webデザイン">
                             <span class="deco deco-plant1"></span>
-                         </div>
-                        <h3>出店・場所貸しサービス</h3>
-                        <p>あなたのアイデアを形にする場所を提供します。クリエイティブなワークショップやお店を開く場として、空間をサポート。</p>
-                        <a href="#contact" class="btn btn-outline">お問い合わせ <span class="arrow">→</span></a>
+                        </div>
+                        <h3>アイデア実現アトリエ</h3>
+                        <p>HTML/CSSを使ってWebサイトを作ったり、JavaScriptでインタラクティブなコンテンツを作成。自分のアイデアをカタチにする力を養います。</p>
+                        <a href="#contact" class="btn btn-outline">無料体験に申し込む <span class="arrow">→</span></a>
                     </div>
                     <div class="service-item fade-in">
-                         <span class="service-number">03</span>
-                         <div class="service-image">
-                            <!-- イラスト or 写真 -->
-                            <img src="https://images.unsplash.com/photo-1586796676769-1c1043a15954?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="マーケティング支援">
-                             <!-- 装飾 -->
+                        <span class="service-number">03</span>
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1623479322729-28b25c16b011?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="アプリ開発">
                             <span class="deco deco-idea1"></span>
-                         </div>
-                        <h3>コンテンツ開発＆<br>マーケティング支援</h3>
-                        <p>体験型コンテンツの企画・運営・収益化をサポート。SNSを活用した集客や、ターゲットに響くコンテンツ作りをお手伝い。</p>
-                         <a href="#contact" class="btn btn-outline">お問い合わせ <span class="arrow">→</span></a>
+                        </div>
+                        <h3>未来クリエイター育成<br>プログラム</h3>
+                        <p>Python、JavaScriptなどを使って本格的なアプリケーション開発に挑戦。プログラミングの実践力を身につけ、自分だけのアプリを作り上げます。</p>
+                        <a href="#contact" class="btn btn-outline">無料体験に申し込む <span class="arrow">→</span></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. ストア/ワークショップ情報 -->
-        <section id="stores" class="section stores">
+        <!-- 5. 作品ギャラリー -->
+        <section id="gallery" class="section stores">
             <div class="container">
-                <h2 class="section-title fade-in">Stores</h2>
+                <h2 class="section-title fade-in">作品ギャラリー</h2>
                 <div class="stores-grid">
                     <div class="store-item fade-in">
                         <div class="store-image">
-                            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=972&q=80" alt="店舗A イメージ">
+                            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="生徒作品：オリジナルゲーム">
                         </div>
-                        <h3>YASUMI LAB NAGOYA (仮)</h3>
-                        <p class="store-address"><span class="icon">📍</span>愛知県名古屋市中区千代田1-13-18</p>
-                        <p class="store-access"><span class="icon">🚃</span>矢場町駅3番出口 / 上前津駅1番出口 徒歩8分</p>
+                        <h3>みんなで遊べるゲーム</h3>
+                        <p class="store-address">制作：Aさん（小学6年生）</p>
+                        <p class="store-access">使用技術：Scratch</p>
                         <div class="store-tags">
-                            <span>陶器作り</span>
-                            <span>モールドール</span>
-                            <span>キャンドル</span>
+                            <span>ゲーム制作</span>
+                            <span>アニメーション</span>
+                            <span>サウンド</span>
                         </div>
                         <div class="store-buttons">
-                            <a href="#" class="btn btn-primary"><span class="icon">📅</span>予約する</a>
-                            <a href="#" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><span class="icon">📷</span>Instagram</a>
+                            <a href="#contact" class="btn btn-primary">体験してみる <span class="arrow">→</span></a>
                         </div>
-                         <!-- 装飾 -->
                         <span class="deco deco-star2"></span>
                     </div>
-                     <div class="store-item fade-in">
+                    <div class="store-item fade-in">
                         <div class="store-image">
-                            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="店舗B イメージ">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=755&q=80" alt="生徒作品：Webサイト">
                         </div>
-                        <h3>Y! Y! hands (仮)</h3>
-                        <p class="store-address"><span class="icon">📍</span>愛知県名古屋市中区丸の内2-10-16</p>
-                        <p class="store-access"><span class="icon">🚃</span>丸の内駅8番出口 徒歩5分 / 伏見駅 徒歩8分</p>
+                        <h3>自分だけのWebサイト</h3>
+                        <p class="store-address">制作：Bさん（中学2年生）</p>
+                        <p class="store-access">使用技術：HTML/CSS, JavaScript</p>
                         <div class="store-tags">
-                            <span>イタリアンチャーム</span>
+                            <span>Webデザイン</span>
+                            <span>レスポンシブ</span>
                         </div>
-                         <div class="store-buttons">
-                            <a href="#" class="btn btn-primary"><span class="icon">📅</span>予約する</a>
-                            <a href="#" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><span class="icon">📷</span>Instagram</a>
+                        <div class="store-buttons">
+                            <a href="#contact" class="btn btn-primary">作品を見る <span class="arrow">→</span></a>
                         </div>
-                          <!-- 装飾 -->
                         <span class="deco deco-dot1"></span>
                     </div>
-                    <div class="store-item coming-soon fade-in">
-                        <div class="store-image-coming">
-                            <p>Coming Soon!</p>
-                            <!-- 波線などの装飾 -->
-                            <span class="deco deco-wave-line"></span>
+                    <div class="store-item fade-in">
+                        <div class="store-image">
+                            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="生徒作品：アプリ">
                         </div>
-                        <h3>NEW STORE (仮)</h3>
-                        <p class="store-address"><span class="icon">📍</span>未定</p>
-                        <p class="store-access"><span class="icon">🚃</span></p>
-                        <div class="store-buttons disabled">
-                            <span class="btn btn-primary"><span class="icon">📅</span>準備中</span>
-                            <span class="btn btn-secondary"><span class="icon">📷</span>準備中</span>
+                        <h3>天気予報アプリ</h3>
+                        <p class="store-address">制作：Cさん（高校1年生）</p>
+                        <p class="store-access">使用技術：Python, API連携</p>
+                        <div class="store-tags">
+                            <span>Webアプリ</span>
+                            <span>データ分析</span>
                         </div>
-                        <!-- 装飾 -->
+                        <div class="store-buttons">
+                            <a href="#contact" class="btn btn-primary">詳しく見る <span class="arrow">→</span></a>
+                        </div>
                         <span class="deco deco-heart2"></span>
                     </div>
                 </div>
@@ -209,16 +197,16 @@
          <!-- 区切り装飾 (例) -->
         <div class="section-divider line-divider"></div>
 
-        <!-- 6. ニュース -->
+        <!-- 6. お知らせ -->
         <section id="news" class="section news">
             <div class="container-narrow">
-                <h2 class="section-title fade-in">News</h2>
+                <h2 class="section-title fade-in">お知らせ</h2>
                 <ul class="news-list fade-in">
-                    <li><a href="#"><span class="news-date">2025.03.17</span><span class="news-title">コーポレートサイトをリニューアルしました</span></a></li>
-                    <li><a href="#"><span class="news-date">2025.03.08</span><span class="news-title">韓国の人気ブランドとコラボレーションワークショップを開催</span></a></li>
-                    <li><a href="#"><span class="news-date">2025.03.03</span><span class="news-title">メ〜テレ「ドデスカ＋」にて店舗をご紹介いただきました</span></a></li>
-                    <li><a href="#"><span class="news-date">2025.01.25</span><span class="news-title">法人名を株式会社YASUMI WORKSに変更しました</span></a></li>
-                    <li><a href="#"><span class="news-date">2025.01.07</span><span class="news-title">Y! Y! hands オープン日決定のお知らせ</span></a></li>
+                    <li><a href="#"><span class="news-date">2024.03.17</span><span class="news-title">春休み特別プログラミング体験会を開催します</span></a></li>
+                    <li><a href="#"><span class="news-date">2024.03.08</span><span class="news-title">生徒作品がプログラミングコンテストで入賞しました</span></a></li>
+                    <li><a href="#"><span class="news-date">2024.03.03</span><span class="news-title">新コース「アプリ開発入門」がスタートします</span></a></li>
+                    <li><a href="#"><span class="news-date">2024.02.25</span><span class="news-title">オンラインプログラミング相談会の実施について</span></a></li>
+                    <li><a href="#"><span class="news-date">2024.02.07</span><span class="news-title">2024年度の新規受講生募集を開始しました</span></a></li>
                 </ul>
                 <div class="news-more fade-in">
                     <a href="#" class="btn btn-outline-gray">もっと読み込む <span class="arrow">↓</span></a>
@@ -226,69 +214,84 @@
             </div>
         </section>
 
-        <!-- 7. コンタクト -->
+        <!-- 7. 無料体験申込み -->
         <section id="contact" class="section contact bg-light-blue">
             <div class="container-narrow">
-                <h2 class="section-title fade-in">Contact</h2>
+                <h2 class="section-title fade-in">無料体験申込み</h2>
                 <form action="#" method="post" class="contact-form fade-in">
                     <div class="form-group">
-                        <label for="name">お名前 <span class="required">*</span></label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="child-name">お子様のお名前 <span class="required">*</span></label>
+                        <input type="text" id="child-name" name="child-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade">学年 <span class="required">*</span></label>
+                        <select id="grade" name="grade" required>
+                            <option value="">選択してください</option>
+                            <option value="小学1年生">小学1年生</option>
+                            <option value="小学2年生">小学2年生</option>
+                            <option value="小学3年生">小学3年生</option>
+                            <option value="小学4年生">小学4年生</option>
+                            <option value="小学5年生">小学5年生</option>
+                            <option value="小学6年生">小学6年生</option>
+                            <option value="中学1年生">中学1年生</option>
+                            <option value="中学2年生">中学2年生</option>
+                            <option value="中学3年生">中学3年生</option>
+                            <option value="高校生">高校生</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="parent-name">保護者様のお名前 <span class="required">*</span></label>
+                        <input type="text" id="parent-name" name="parent-name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">メールアドレス <span class="required">*</span></label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label>お問い合わせ項目 <span class="required">*</span></label>
+                        <label for="tel">電話番号 <span class="required">*</span></label>
+                        <input type="tel" id="tel" name="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ご希望のコース <span class="required">*</span></label>
                         <div class="radio-group">
-                            <label><input type="radio" name="inquiry_type" value="場所貸し・出店希望" required> 場所貸し・出店希望</label>
-                            <label><input type="radio" name="inquiry_type" value="その他"> その他お問い合わせ</label>
+                            <label><input type="radio" name="course" value="はじめてのデジタル探検隊" required> はじめてのデジタル探検隊</label>
+                            <label><input type="radio" name="course" value="アイデア実現アトリエ"> アイデア実現アトリエ</label>
+                            <label><input type="radio" name="course" value="未来クリエイター育成プログラム"> 未来クリエイター育成プログラム</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="message">お問い合わせ詳細 <span class="required">*</span></label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
+                        <label for="message">ご質問・ご要望など</label>
+                        <textarea id="message" name="message" rows="6"></textarea>
                     </div>
                     <div class="form-submit">
-                        <button type="submit" class="btn btn-submit">送信する <span class="arrow">→</span></button>
+                        <button type="submit" class="btn btn-submit">無料体験に申し込む <span class="arrow">→</span></button>
                     </div>
                 </form>
-                 <!-- 装飾 -->
-                 <span class="deco deco-mail1"></span>
-                 <span class="deco deco-bubble1"></span>
+                <span class="deco deco-mail1"></span>
+                <span class="deco deco-bubble1"></span>
             </div>
         </section>
 
         <!-- 8. フッター -->
         <footer class="footer">
-             <!-- フッター上部の装飾帯 (CSSの背景 or img/svg) -->
             <div class="footer-decoration">
-                <!-- 例: <img src="images/footer-pattern.svg" alt=""> -->
             </div>
             <div class="footer-container">
                 <div class="footer-logo">
-                     <!-- ロゴ画像 or テキスト -->
-                    <img src="https://via.placeholder.com/150x50/333333/FFFFFF?text=LOGO" alt="ブランドロゴ フッター"> <!-- ★ロゴ画像に変更 -->
+                    <h2>なかのさかうえこう</h2>
                 </div>
                 <nav class="footer-nav">
+                    
                     <ul>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#service">Service</a></li>
-                        <li><a href="#stores">Stores</a></li>
-                        <li><a href="#news">News</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                         <li><a href="#">Privacy Policy</a></li> <!-- 必要なら -->
+                        <li><a href="#courses">コース案内</a></li>
+                        <li><a href="#gallery">作品ギャラリー</a></li>
+                        <li><a href="#news">お知らせ</a></li>
+                        <li><a href="#contact">無料体験申込み</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
                     </ul>
                 </nav>
-                <!-- SNSリンクなど (任意) -->
-                <!--
-                <div class="footer-sns">
-                    <a href="#" target="_blank" rel="noopener noreferrer">[Insta Icon]</a>
-                    <a href="#" target="_blank" rel="noopener noreferrer">[Twitter Icon]</a>
-                </div>
-                -->
-                <p class="copyright">&copy; 2024 Your Brand Name.</p> <!-- ★ブランド名と年に変更 -->
+                <p class="copyright">&copy; 2024 なかのさかうえこう All Rights Reserved.</p>
             </div>
         </footer>
 

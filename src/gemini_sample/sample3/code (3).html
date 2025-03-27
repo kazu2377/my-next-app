@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スルガ銀行 採用サイト</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 画像ロード中のスタイル */
+        img:not(.loaded) {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        img.loaded {
+            opacity: 1;
+        }
+        /* 更新ボタンのスタイル */
+        #refreshImagesBtn {
+            position: fixed;
+            bottom: 70px;
+            right: 30px;
+            z-index: 98;
+            background-color: #005bac;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        #refreshImagesBtn:hover {
+            opacity: 1;
+        }
+        #refreshImagesBtn svg {
+            width: 20px;
+            height: 20px;
+        }
+        /* デバッグ用 */
+        #debug-info {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 9999;
+            max-width: 300px;
+            max-height: 150px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="debug-info"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="bank,logo" alt="スルガ銀行 SURUGA bank Recruiting Site" class="unsplash-image" crossorigin="anonymous">
+                <!-- Replace with actual logo image -->
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">スルガ銀行を知る</a></li>
+                    <li><a href="#">働く環境を知る</a></li>
+                    <li><a href="#">仕事を知る / 人を知る</a></li>
+                    <li><a href="#">事業要項</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn btn-entry">ENTRY</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                 <!-- Background image/graphic would be set via CSS -->
+                <h1>ユニークな発想が<br>銀行を変える</h1>
+                <p>1895年の創業から、新しいこと、違うことへ挑戦し、<br>「あってよかった、出会えてよかった。」を創造してきたスルガ銀行。</p>
+                <p>私たちはお客さまの想いを聴き、課題に真摯に向き合い、必要とされる価値を提供するために、<br>当事者意識をもって取り組みむことができる人を求めています。</p>
+            </div>
+             <!-- Event Info (Optional, based on crop) -->
+             <div class="event-info container">
+                <p><span>▶</span> イベント情報: <a href="#">＜2026年度新卒採用 エントリー受付 / 自社説明会実施中＞</a></p>
+                <p>応募希望の方は <a href="#">「2026年度新卒採用」よりエントリーをお願いします。 <img src="placeholder-external-link-icon.png" alt="external link" class="icon-external"></a></p>
+             </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission-section section-padding">
+            <div class="container">
+                <div class="mission-content">
+                    <p class="section-label">MISSION</p>
+                    <h2>企業理念</h2>
+                    <p class="mission-statement">
+                        あってよかった、<br>
+                        出会えてよかった、<br>
+                        と思われる存在でありたい。
+                    </p>
+                    <p class="mission-detail">
+                        どんな時代が変わろうとも、<br>
+                        どんなに時が経とうとも、<br>
+                        お客さまの視点に立ったサービスを追求するとともに、<br>
+                        お客さまの人生に寄り添い、<br>
+                        必要とされる価値と、豊かな暮らしを提供します。
+                    </p>
+                    <a href="#" class="btn-link-arrow">スルガ銀行を知る</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Separator -->
+        <section class="image-separator">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="fuji,japan" alt="富士山と海の風景" class="unsplash-image" crossorigin="anonymous">
+             <!-- Replace with actual Mt. Fuji image -->
+        </section>
+
+        <!-- Personality Section -->
+        <section class="personality-section section-padding">
+            <div class="container">
+                <p class="section-label">PERSONALITY</p>
+                <h2>求める人物像</h2>
+                <div class="personality-cards">
+                    <article class="card">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="agile,speed" alt="アジャイル" class="unsplash-image" crossorigin="anonymous">
+                        <h3>\\ アジャイル /</h3>
+                        <p>好奇心が旺盛で、何事にもスピーディに考え、"行動"できる人</p>
+                    </article>
+                    <article class="card">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="challenge,innovation" alt="チャレンジ" class="unsplash-image" crossorigin="anonymous">
+                        <h3>\\ チャレンジ /</h3>
+                        <p>新しいことに取り組むことが好きで、壁にぶつかっても問題解決に向けて主体的にチャレンジできる人</p>
+                    </article>
+                    <article class="card">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="empathy,teamwork" alt="相手の気持ちに寄り添う" class="unsplash-image" crossorigin="anonymous">
+                        <h3>\\ 相手の気持ちに<br>寄り添う /</h3>
+                        <p>相手（お客さまやチームメンバー）の視点に立ち、相手を理解することで、最善の価値を提供できる人</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interview Section -->
+        <section class="interview-section section-padding">
+            <div class="container">
+                 <div class="section-header-split">
+                    <div>
+                        <p class="section-label">INTERVIEW</p>
+                        <h2>社員インタビュー</h2>
+                    </div>
+                    <p>スルガ銀行の社員がどんな仕事をしているのか、<br>どんなやりがいを感じているのか、インタビューを通して紹介します。</p>
+                 </div>
+                <div class="interview-cards">
+                    <!-- Add cards similar to this structure -->
+                    <article class="card interview-card">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="business,office,japan" alt="支店事務" class="unsplash-image" crossorigin="anonymous">
+                        <span class="badge">新卒</span>
+                        <h3>支店事務</h3>
+                        <p>勤務地：静岡エリア / 入社：4年目</p>
+                    </article>
+                     <article class="card interview-card">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="housing,loan,japan" alt="住宅ローン営業" class="unsplash-image" crossorigin="anonymous">
+                         <span class="badge">新卒</span>
+                        <h3>住宅ローン営業</h3>
+                        <p>勤務地：東京エリア / 入社：7年目</p>
+                    </article>
+                     <article class="card interview-card">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="finance,advisor,japan" alt="ファイナンシャル・アドバイザー" class="unsplash-image" crossorigin="anonymous">
+                         <span class="badge">新卒</span>
+                        <h3>ファイナンシャル・アドバイザー</h3>
+                        <p>勤務地：静岡エリア / 入社：2年目</p>
+                    </article>
+                     <article class="card interview-card">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="realestate,investment,japan" alt="投資用不動産ローン営業" class="unsplash-image" crossorigin="anonymous">
+                        <h3>投資用不動産ローン営業</h3>
+                        <p>勤務地：東京エリア / 入社：12年目</p>
+                    </article>
+                </div>
+                <div class="interview-nav">
+                    <!-- Basic placeholder nav -->
+                     <span class="arrow-nav prev">＜</span>
+                     <span class="arrow-nav next">＞</span>
+                    <a href="#" class="btn-link-arrow">一覧をみる</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blue Background Sections Wrapper -->
+        <div class="blue-background">
+
+            <!-- Work Environment Section -->
+            <section class="work-environment-section section-padding">
+                <div class="container card-like-section">
+                     <div class="text-content">
+                        <p class="section-label">WORK ENVIRONMENT</p>
+                        <h2><a href="#" class="heading-link-arrow">働く環境を知る</a></h2>
+                        <p>スルガ銀行でどんな働き方ができるのか、人材育成制度や福利厚生などを紹介します。</p>
+                        <ul class="link-list">
+                            <li><a href="#" class="btn-link-arrow"><img src="placeholder-heart-icon.png" alt="" class="icon"> 福利厚生</a></li>
+                            <li><a href="#" class="btn-link-arrow"><img src="placeholder-career-icon.png" alt="" class="icon"> 社員のキャリア支援</a></li>
+                        </ul>
+                     </div>
+                     <div class="image-content">
+                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="office,meeting,japan" alt="働く環境" class="unsplash-image" crossorigin="anonymous">
+                     </div>
+                </div>
+            </section>
+
+            <!-- About Suruga Bank Section -->
+            <section class="about-suruga-section section-padding">
+                 <div class="container card-like-section">
+                     <div class="text-content">
+                        <p class="section-label">ABOUT</p>
+                        <h2><a href="#" class="heading-link-arrow">スルガ銀行を知る</a></h2>
+                        <p>企業理念やこれまでの歩みなどとともに、数字でみるスルガ銀行をご紹介します。</p>
+                         <ul class="link-list">
+                            <li><a href="#" class="btn-link-arrow"><img src="placeholder-bank-icon.png" alt="" class="icon"> スルガ銀行について</a></li>
+                            <li><a href="#" class="btn-link-arrow"><img src="placeholder-doc-icon.png" alt="" class="icon"> 企業理念／ビジョン</a></li>
+                            <li><a href="#" class="btn-link-arrow"><img src="placeholder-history-icon.png" alt="" class="icon"> スルガ銀行の歩み</a></li>
+                            <li><a href="#" class="btn-link-arrow"><img src="placeholder-chart-icon.png" alt="" class="icon"> 数字でみるスルガ銀行</a></li>
+                        </ul>
+                     </div>
+                     <div class="image-content">
+                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="bank,building,japan" alt="スルガ銀行 建物" class="unsplash-image" crossorigin="anonymous">
+                     </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Data Section -->
+        <section class="data-section section-padding">
+            <div class="container">
+                 <p class="section-label">DATA OF SURUGA BANK</p>
+                 <h2>数字でみるスルガ銀行</h2>
+                 <p class="section-intro">スルガ銀行の特長や働く環境、<br>どんな人が働いているかを数値でご紹介いたします。</p>
+                 <div class="data-grid">
+                    <div class="data-item large">
+                        <p>創業</p>
+                        <span class="data-value highlight"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="building,historic" alt="創業" class="unsplash-image" crossorigin="anonymous">1895<span class="unit">年</span></span>
+                    </div>
+                    <div class="data-item">
+                        <p>平均勤続年数</p>
+                        <span class="data-value">21.2<span class="unit">年</span></span>
+                        <span class="data-sub">男性 22.5年</span>
+                        <span class="data-sub">女性 19.9年</span>
+                    </div>
+                     <div class="data-item">
+                        <p>年間有給取得日数</p>
+                        <span class="data-value">17.5<span class="unit">日</span></span>
+                         <span class="data-note">※ 平均値</span>
+                    </div>
+                    <div class="data-item">
+                        <p>リテール特化歴</p>
+                        <span class="data-value">35<span class="unit">年</span></span>
+                    </div>
+                     <div class="data-item">
+                        <p>男女育児休業取得率</p>
+                        <span class="data-value">100<span class="unit">%</span></span>
+                    </div>
+                    <div class="data-item">
+                        <p>新卒離職率</p>
+                        <span class="data-value">2.04<span class="unit">%</span></span>
+                         <span class="data-note">※ 過去3年間</span>
+                    </div>
+                    <div class="data-item">
+                        <p>新卒入社社員の出身地</p>
+                        <div class="origin-data">
+                             <span>静岡県 <span class="data-value inline">53%</span></span>
+                             <span>神奈川県 <span class="data-value inline">41%</span></span>
+                             <span>その他 <span class="data-value inline">6%</span></span>
+                        </div>
+                         <span class="data-note">※ 直近3年間</span>
+                    </div>
+                 </div>
+                 <a href="#" class="btn-link-arrow">詳しいデータをみる</a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section section-padding">
+            <div class="container">
+                 <p class="section-label">FAQ</p>
+                 <h2>よくある質問</h2>
+                 <div class="faq-list">
+                     <div class="faq-item">
+                         <button class="faq-question">
+                             <span>Q</span> 選考にあたって、取得しておいた方がよい検定や資格はありますか？
+                             <span class="faq-toggle">+</span>
+                         </button>
+                         <div class="faq-answer">
+                             <p>A. 特に必須となる資格はありません。入社後に必要な知識や資格取得をサポートする体制が整っています。</p>
+                         </div>
+                     </div>
+                      <div class="faq-item">
+                         <button class="faq-question">
+                             <span>Q</span> 選考にあたって、専攻（理系・文系）による採用基準の違いはありますか？
+                             <span class="faq-toggle">+</span>
+                         </button>
+                         <div class="faq-answer">
+                             <p>A. 専攻による有利不利は一切ありません。多様なバックグラウンドを持つ人材を求めています。</p>
+                         </div>
+                     </div>
+                     <div class="faq-item">
+                         <button class="faq-question">
+                             <span>Q</span> 総合職、エリア総合職、一般事務職の職種は、いつまでに決定すればいいでしょうか？
+                              <span class="faq-toggle">+</span>
+                         </button>
+                         <div class="faq-answer">
+                             <p>A. エントリー時に希望職種を選択いただきますが、選考過程で変更することも可能です。最終的な決定は内定後となります。</p>
+                         </div>
+                     </div>
+                     <div class="faq-item">
+                         <button class="faq-question">
+                              <span>Q</span> 総合職、エリア総合職、一般事務職の職種は、入社後に変更できますか？
+                              <span class="faq-toggle">+</span>
+                         </button>
+                         <div class="faq-answer">
+                             <p>A. キャリアパスの中で職種転換の機会があります。本人の希望と適性、会社の状況を考慮して決定されます。</p>
+                         </div>
+                     </div>
+                      <div class="faq-item">
+                         <button class="faq-question">
+                              <span>Q</span> どのような部署があるのでしょうか？
+                              <span class="faq-toggle">+</span>
+                         </button>
+                         <div class="faq-answer">
+                             <p>A. 営業店（支店）、本部（ローン、企画、人事、システム、監査など）多岐にわたる部署があります。</p>
+                         </div>
+                     </div>
+                      <div class="faq-item">
+                         <button class="faq-question">
+                              <span>Q</span> 昇給はどのような仕組みになっているのでしょうか？
+                              <span class="faq-toggle">+</span>
+                         </button>
+                         <div class="faq-answer">
+                             <p>A. 年に一度、人事評価に基づいて昇給が決定されます。評価は業績、能力、行動など多角的に行われます。</p>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news-section section-padding">
+            <div class="container">
+                <p class="section-label">NEWS</p>
+                <h2>お知らせ</h2>
+                 <div class="news-item">
+                    <span class="news-date">2025.01.30</span>
+                    <p class="news-title">採用ホームページをリニューアルしました。</p>
+                 </div>
+                <a href="#" class="btn-link-arrow">お知らせ一覧をみる</a>
+            </div>
+        </section>
+
+        <!-- Job Description Section -->
+         <section class="job-desc-section section-padding blue-background-alt">
+             <div class="container job-desc-container">
+                 <div class="job-desc-text">
+                    <p class="section-label">JOB DESCRIPTION</p>
+                    <h2>募集要項</h2>
+                    <p>新しいアイディアで銀行の未来を変える人を募集しています。</p>
+                    <img src="placeholder-people-icons.png" alt="Team icons" class="team-icons">
+                 </div>
+                 <div class="job-desc-links">
+                     <a href="#" class="btn-link-arrow-box">新卒募集要項</a>
+                     <a href="#" class="btn-link-arrow-box">キャリア募集要項</a>
+                     <a href="#" class="btn-link-arrow-box">カムバック募集要項</a>
+                     <a href="#" class="btn-link-arrow-box">リファラル採用募集要項</a>
+                 </div>
+             </div>
+         </section>
+
+        <!-- Group Section -->
+        <section class="group-section section-padding">
+            <div class="container">
+                <p class="section-label">GROUP</p>
+                <h2>スルガ銀行グループの採用情報</h2>
+                <div class="group-links">
+                    <a href="#" target="_blank">スルガコンピューターサービス株式会社 <img src="placeholder-external-link-icon.png" alt="external link" class="icon-external"></a>
+                    <a href="#" target="_blank">スルガスタッフサービス株式会社 <img src="placeholder-external-link-icon.png" alt="external link" class="icon-external"></a>
+                    <a href="#" target="_blank">ダイレクトワン株式会社 <img src="placeholder-external-link-icon.png" alt="external link" class="icon-external"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Entry Section -->
+        <section class="final-entry-section">
+            <a href="#" class="entry-banner-link">
+                 <h2>ENTRY</h2>
+                 <p>スルガ銀行 採用応募一覧</p>
+                 <span class="arrow-circle">→</span>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-logo-nav">
+                <div class="logo">
+                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-unsplash="bank,logo" alt="スルガ銀行 SURUGA bank Recruiting Site" class="unsplash-image" crossorigin="anonymous">
+                     <!-- Replace with actual logo image -->
+                </div>
+                 <a href="#" class="btn btn-entry footer-entry">ENTRY</a>
+                 <div class="footer-links">
+                    <div>
+                        <p class="footer-link-heading">スルガ銀行を知る</p>
+                        <ul>
+                            <li><a href="#">スルガ銀行について</a></li>
+                            <li><a href="#">企業理念/ビジョン</a></li>
+                            <li><a href="#">スルガ銀行の歩み</a></li>
+                            <li><a href="#">数字でみるスルガ銀行</a></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <p class="footer-link-heading">働く環境を知る</p>
+                        <p class="footer-link-heading">仕事を知る / 人を知る</p>
+                         <ul>
+                            <li><a href="#">社員インタビュー</a></li>
+                            <li><a href="#">キャリア採用社員に聞く</a></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <p class="footer-link-heading">募集要項</p>
+                        <ul>
+                            <li><a href="#">新卒採用募集要項</a></li>
+                            <li><a href="#">キャリア採用募集要項</a></li>
+                            <li><a href="#">カムバック採用募集要項</a></li>
+                            <li><a href="#">リファラル採用募集要項</a></li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
+             <div class="footer-bottom">
+                <div>
+                     <a href="#">コードシートサイト <img src="placeholder-external-link-icon.png" alt="external link" class="icon-external"></a>
+                    <a href="#">個人情報の取扱いについて <img src="placeholder-external-link-icon.png" alt="external link" class="icon-external"></a>
+                    <p class="unsplash-attribution">画像提供: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
+                 </div>
+                <p class="copyright">Copyright © 2025 SURUGA bank Ltd. All Rights Reserved.</p>
+             </div>
+        </div>
+         <button id="pageTopBtn" title="Go to top">↑</button>
+         <!-- 画像更新ボタン -->
+         <button id="refreshImagesBtn" title="画像を更新">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+            </svg>
+         </button>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <script>
+    // デバッグ情報を表示
+    const debugInfo = document.getElementById('debug-info');
+    if (debugInfo) {
+        const originalConsoleLog = console.log;
+        const originalConsoleError = console.error;
+        
+        console.log = function() {
+            debugInfo.innerHTML += Array.from(arguments).join(' ') + '<br>';
+            debugInfo.scrollTop = debugInfo.scrollHeight;
+            originalConsoleLog.apply(console, arguments);
+        };
+        
+        console.error = function() {
+            debugInfo.innerHTML += '<span style="color:red">' + Array.from(arguments).join(' ') + '</span><br>';
+            debugInfo.scrollTop = debugInfo.scrollHeight;
+            originalConsoleError.apply(console, arguments);
+        };
+        
+        window.addEventListener('error', function(e) {
+            console.error('エラー: ' + e.message);
+        });
+    }
+    </script>
+</body>
+</html>
